@@ -1,0 +1,123 @@
+/* ==========================================================================
+   EW-2 · Retro-Nostalgic: design tokens
+   Default era: "1974–77 West-Coast record shop & FM radio print" (70s warm)
+   Variants:   [data-era="neon85"]  80s neon / chrome club flyer
+               [data-era="sys98"]   late-90s invented desktop OS
+   Fonts (Google): Fraunces (opsz,wght,SOFT,WONK + ital), DM Mono
+                   variants: Monoton + Michroma / Silkscreen + VT323
+   ========================================================================== */
+
+:root {
+  /* ---------- Colour: sun-faded 70s print ---------- */
+  --paper:      #F3E6CC;   /* cream stock, never #FFF */
+  --paper-2:    #EAD6AE;   /* aged card */
+  --ink:        #3B2416;   /* chocolate, body text: 11.7:1 on paper */
+  --ink-soft:   #6B4A33;   /* secondary text: 6.4:1 on paper */
+  --gold:       #E8A33D;   /* harvest gold */
+  --mustard:    #D9A520;
+  --orange:     #D2601A;   /* burnt orange */
+  --rust:       #A63A1E;
+  --avocado:    #7A7A2E;
+  --teal:       #2F6F6B;   /* rare cool accent (1 use per screen) */
+  --stripe-1:   var(--gold);
+  --stripe-2:   var(--orange);
+  --stripe-3:   var(--rust);
+  --stripe-4:   var(--ink);
+  --focus:      var(--teal);
+
+  /* ---------- Typography ---------- */
+  --font-display: "Fraunces", "Cooper Black", "Windsor", Georgia, serif;
+  --font-body:    "Fraunces", Georgia, serif;           /* text optical size */
+  --font-mono:    "DM Mono", "IBM Plex Mono", ui-monospace, monospace;
+  --display-axes: "SOFT" 100, "WONK" 1, "opsz" 144;
+  --body-axes:    "SOFT" 50, "WONK" 0, "opsz" 14;
+
+  --step--1: clamp(.82rem, .8rem + .1vw, .9rem);   /* mono labels */
+  --step-0:  clamp(1.06rem, 1rem + .25vw, 1.2rem);
+  --step-1:  clamp(1.3rem, 1.15rem + .6vw, 1.7rem);
+  --step-2:  clamp(1.8rem, 1.4rem + 1.6vw, 2.8rem);
+  --step-3:  clamp(2.6rem, 1.8rem + 3.5vw, 5rem);
+  --step-hero: clamp(4rem, 1rem + 12vw, 13rem);
+  --leading-display: .82;
+  --leading-body: 1.55;
+  --tracking-display: -0.03em;
+  --tracking-mono: 0.08em;     /* uppercase catalogue labels */
+
+  /* ---------- Spacing ---------- */
+  --space-2xs: .5rem; --space-xs: .75rem; --space-s: 1rem; --space-m: 1.5rem;
+  --space-l: 2.5rem;  --space-xl: 4rem;   --space-2xl: 7rem;
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --max-w: 1280px;
+
+  /* ---------- Radius: 70s "TV screen" softness ---------- */
+  --radius-s: 6px;
+  --radius-m: 18px;
+  --radius-tv: 28% / 22%;      /* rounded-rectangle CRT frame */
+  --radius-pill: 999px;
+
+  /* ---------- Borders, shadows, print effects ---------- */
+  --rule: 2px solid var(--ink);
+  --shadow-print: 6px 6px 0 var(--rust);        /* flat offset "second ink" */
+  --misregister: 3px;                           /* riso-style offset */
+  --grain-opacity: .10;
+  --halftone: radial-gradient(circle, var(--ink) 28%, transparent 30%) 0 0 / 6px 6px;
+  --scanlines: repeating-linear-gradient(0deg, rgb(0 0 0 / .06) 0 1px, transparent 1px 3px);
+
+  /* ---------- Motion: era-true ---------- */
+  --rpm-33: 1.8s;      /* one revolution at 33⅓ rpm */
+  --rpm-45: 1.333s;
+  --ease-70s: cubic-bezier(.45, 0, .55, 1);     /* lazy sine in-out */
+  --ease-tonearm: cubic-bezier(.3, .1, .2, 1);
+  --steps-blink: steps(2, jump-none);
+  --dur-s: 200ms; --dur-m: 600ms; --dur-l: 1200ms;
+}
+
+/* ---------- Variant 1: Neon '85 (club flyer, synth-pop, arcade) ---------- */
+[data-era="neon85"] {
+  --paper:    #0B0221;       /* night */
+  --paper-2:  #1A0B3D;
+  --ink:      #F4EDFF;
+  --ink-soft: #C9B8F0;
+  --gold:     #FFB86C;
+  --orange:   #FF2E97;       /* hot magenta */
+  --rust:     #7B2CBF;
+  --avocado:  #00F0FF;       /* cyan */
+  --teal:     #00F0FF;
+  --stripe-1: #FFB86C; --stripe-2: #FF2E97; --stripe-3: #7B2CBF; --stripe-4: #00F0FF;
+  --font-display: "Monoton", "Michroma", sans-serif;
+  --font-body: "Michroma", system-ui, sans-serif;
+  --display-axes: normal; --body-axes: normal;
+  --shadow-print: 0 0 18px rgb(255 46 151 / .7), 0 0 2px #FF2E97;   /* neon glow */
+  --radius-tv: 4px;
+  --grain-opacity: .05;
+  --scanlines: repeating-linear-gradient(0deg, rgb(0 0 0 / .25) 0 2px, transparent 2px 4px);
+  --ease-70s: cubic-bezier(.2, .8, .2, 1);
+}
+
+/* ---------- Variant 2: System '98 (invented desktop OS) ---------- */
+[data-era="sys98"] {
+  --paper:    #9DB7B3;       /* invented sea-glass desktop (not Win95 teal) */
+  --paper-2:  #D9D4C7;       /* window chrome, warm grey */
+  --ink:      #1C1B22;
+  --ink-soft: #3D3B47;
+  --gold:     #F2C14E;
+  --orange:   #E86A33;
+  --rust:     #2B3A8C;       /* title-bar blue */
+  --avocado:  #5E8C61;
+  --teal:     #2B3A8C;
+  --font-display: "Silkscreen", "VT323", monospace;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "VT323", monospace;
+  --display-axes: normal; --body-axes: normal;
+  --radius-s: 0; --radius-m: 0; --radius-tv: 0;
+  --rule: 2px solid var(--ink);
+  --bevel-out: inset -2px -2px 0 #6E6A60, inset 2px 2px 0 #FFFFF4;
+  --bevel-in:  inset 2px 2px 0 #6E6A60, inset -2px -2px 0 #FFFFF4;
+  --shadow-print: 4px 4px 0 rgb(28 27 34 / .55);
+  --grain-opacity: 0;
+  --ease-70s: steps(4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --rpm-33: 0s; --rpm-45: 0s; --dur-s: 0ms; --dur-m: 0ms; --dur-l: 0ms; }
+}

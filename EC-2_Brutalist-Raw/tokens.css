@@ -1,0 +1,100 @@
+/* =====================================================================
+   EC-2 · Brutalist / Raw / Anti-design — design tokens
+   Default theme: "Default Browser" (white, black, link blue, highlighter)
+   Variants: [data-theme="xerox"]     fluoro pink photocopy
+             [data-theme="terminal"]  black + phosphor green
+   Fonts: system only (zero requests). Optional Google display add-on:
+   Anton / Archivo Black / VT323 — load one at most.
+   ===================================================================== */
+
+:root {
+  /* ---------- Colour ---------- */
+  --c-bg:        #FFFFFF;
+  --c-fg:        #000000;   /* 21:1 */
+  --c-link:      #0000EE;   /* browser default, 9.4:1 */
+  --c-visited:   #551A8B;   /* browser default, 11:1  */
+  --c-mark:      #FFFF00;   /* highlighter; black on it 19.6:1 */
+  --c-alarm:     #E00000;   /* text-safe red, 5.0:1 on white */
+  --c-alarm-raw: #FF0000;   /* shapes / ≥24px only (4.0:1)   */
+  --c-acid:      #00FF41;   /* one acid field; black text only */
+  --c-grey:      #C0C0C0;   /* Windows-95 face grey (decorative) */
+  --c-paper-grid:#E6E6E6;   /* spreadsheet / graph-paper lines */
+
+  /* ---------- Typography ---------- */
+  --font-body:    "Times New Roman", Times, "Liberation Serif", serif;
+  --font-sans:    Arial, Helvetica, "Liberation Sans", sans-serif;
+  --font-mono:    ui-monospace, "Courier New", Courier, monospace;
+  --font-display: Arial, Helvetica, sans-serif; /* stretched with --stretch */
+
+  --fs-micro:  11px;
+  --fs-small:  13px;
+  --fs-body:   clamp(17px, 16px + .3vw, 20px);
+  --fs-big:    clamp(28px, 4vw + 10px, 64px);
+  --fs-huge:   clamp(64px, 22vw, 420px);     /* overflow allowed */
+  --stretch:   1.7;                          /* transform: scaleY(var(--stretch)) */
+  --lh-tight:  .78;
+  --lh-body:   1.35;
+  --ls-crush:  -.06em;
+  --ls-wide:   .2em;
+
+  /* ---------- Spacing (no system on purpose, but keep three) ---------- */
+  --space-s: 6px;
+  --space-m: 16px;
+  --space-l: 48px;
+
+  /* ---------- Borders, radius, shadow ---------- */
+  --bw:          2px;
+  --bw-heavy:    6px;
+  --border:      var(--bw) solid var(--c-fg);
+  --border-heavy:var(--bw-heavy) solid var(--c-fg);
+  --radius:      0;
+  --shadow-hard: 6px 6px 0 var(--c-fg);   /* neo-brutalist only */
+  --shadow-none: none;
+  --focus:       3px solid var(--c-alarm);
+
+  /* ---------- Motion (abrupt) ---------- */
+  --ease-steps:  steps(4, end);
+  --ease-none:   linear;
+  --dur-instant: 0ms;
+  --dur-blink:   1000ms;      /* ≤ 1 flash per second */
+  --dur-ticker:  38s;
+}
+
+/* ---------- Variant 1: Xerox (fluoro pink photocopy) ---------- */
+[data-theme="xerox"] {
+  --c-bg:      #FF5FD2;     /* black on it 7.8:1 */
+  --c-fg:      #000000;
+  --c-link:    #000000;
+  --c-visited: #000000;
+  --c-mark:    #FFFFFF;
+  --c-alarm:   #000000;
+  --font-body: var(--font-mono);
+}
+
+/* ---------- Variant 2: Terminal (phosphor on black) ---------- */
+[data-theme="terminal"] {
+  --c-bg:      #000000;
+  --c-fg:      #00FF41;     /* 15.4:1 */
+  --c-link:    #FFFF00;
+  --c-visited: #FFFFFF;
+  --c-mark:    #00FF41;     /* use with black text */
+  --c-alarm:   #FF5050;
+  --font-body: var(--font-mono);
+  --font-display: var(--font-mono);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-ticker: 0s; --dur-blink: 0ms; }
+}
+
+/* ---------- Helpers ---------- */
+.raw-box   { border: var(--border); background: var(--c-bg); }
+.raw-link  { color: var(--c-link); text-decoration: underline; }
+.raw-link:visited { color: var(--c-visited); }
+.stretched { display: inline-block; transform: scaleY(var(--stretch)); transform-origin: bottom left; }
+.graph-paper {
+  background-image:
+    linear-gradient(var(--c-paper-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--c-paper-grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+}

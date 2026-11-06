@@ -1,0 +1,146 @@
+/* =====================================================================
+   EC-1 Immersive / Experimental — design tokens
+   Expressive-Cool quadrant. Dark "stage" by default: the page is a black box
+   theatre and the WebGL scene is the lighting. UI chrome stays quiet so the
+   canvas can be loud.
+
+   Default theme : "Stage"       near-black, bone text, one signal accent
+   Variant 1     : "Lab Paper"   light, clinical, for studios that want to read as precise
+   Variant 2     : "Neon Noir"   saturated, nocturnal, for games / music / launches
+   Usage: <html data-theme="lab-paper"> or <html data-theme="neon-noir">
+   ===================================================================== */
+
+:root {
+  /* ---------- Colour: surfaces ---------- */
+  --c-bg:            #08090b;   /* stage black, not #000: keeps OLED smear + banding down */
+  --c-bg-raised:     #101217;   /* cards, menus */
+  --c-bg-sunken:     #050607;
+  --c-line:          rgba(236, 234, 228, 0.14);  /* hairlines, 1px rules */
+  --c-line-strong:   rgba(236, 234, 228, 0.32);
+
+  /* ---------- Colour: text (contrast measured on --c-bg) ---------- */
+  --c-text:          #eceae4;   /* bone, ~17:1 */
+  --c-text-muted:    #9b9ba4;   /* ~7.4:1, OK for body */
+  --c-text-faint:    #6d6d76;   /* ~3.9:1, large text / decoration only */
+
+  /* ---------- Colour: accent + shader palette ---------- */
+  --c-accent:        #ff5b2e;   /* "signal" orange, ~6.6:1 on bg */
+  --c-accent-ink:    #08090b;   /* text on accent */
+  --c-glow-a:        #5b7cff;   /* iridescent stops fed to shaders / gradients */
+  --c-glow-b:        #2ee6c5;
+  --c-glow-c:        #ff5b2e;
+  --c-glow-d:        #c86bff;
+  --c-selection:     rgba(255, 91, 46, 0.85);
+
+  /* ---------- Typography ---------- */
+  /* Display: a characterful grotesk with optical sizes. Alternatives:
+     Neue Montreal / PP Mori / Aeonik (paid) -> Bricolage Grotesque, Familjen Grotesk, Schibsted Grotesk (Google) */
+  --font-display:    "Bricolage Grotesque", "Familjen Grotesk", system-ui, sans-serif;
+  /* Accent: one italic serif word per headline, never whole paragraphs.
+     PP Editorial New (paid) -> Instrument Serif (Google) */
+  --font-accent:     "Instrument Serif", "Times New Roman", serif;
+  /* Meta / labels / counters: a mono. PP Supply Mono, Söhne Mono (paid) -> JetBrains Mono, IBM Plex Mono (Google) */
+  --font-mono:       "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-body:       "Bricolage Grotesque", system-ui, sans-serif;
+
+  /* Fluid type scale (min @375px -> max @1600px) */
+  --fs-mega:   clamp(3.6rem, 1rem + 13vw, 15rem);   /* hero/footer statement, tracking -0.055em */
+  --fs-h1:     clamp(2.6rem, 1rem + 7vw, 8rem);
+  --fs-h2:     clamp(2rem, 1rem + 4vw, 4.75rem);
+  --fs-h3:     clamp(1.35rem, 1rem + 1.4vw, 2.1rem);
+  --fs-lead:   clamp(1.25rem, 0.9rem + 1.9vw, 2.9rem); /* manifesto paragraphs */
+  --fs-body:   clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  --fs-small:  0.875rem;
+  --fs-meta:   0.72rem;                               /* mono labels, uppercase, +0.08em */
+
+  --lh-tight:  0.86;   /* display */
+  --lh-snug:   1.08;
+  --lh-body:   1.55;
+  --tr-display: -0.055em;
+  --tr-h:       -0.03em;
+  --tr-meta:    0.08em;
+  --fw-display: 600;
+  --fw-body:    400;
+
+  /* ---------- Spacing (8pt base, fluid section rhythm) ---------- */
+  --sp-1: 0.25rem;  --sp-2: 0.5rem;  --sp-3: 0.75rem;  --sp-4: 1rem;
+  --sp-5: 1.5rem;   --sp-6: 2rem;    --sp-7: 3rem;     --sp-8: 4rem;
+  --sp-9: 6rem;     --sp-10: 9rem;
+  --gutter:   clamp(1rem, 0.6rem + 1.8vw, 2.5rem);     /* 16px at 375px */
+  --section:  clamp(6rem, 4rem + 12vw, 16rem);
+  --grid-cols: 12;
+
+  /* ---------- Shape ---------- */
+  --radius-0: 0;          /* default: sharp. Roundness reads "SaaS", not "studio" */
+  --radius-sm: 2px;
+  --radius-pill: 999px;   /* only for cursor labels, tags and the magnetic CTA */
+  --border-hair: 1px solid var(--c-line);
+
+  /* ---------- Depth: glow instead of drop shadow ---------- */
+  --shadow-none: none;
+  --glow-accent: 0 0 0.6rem rgba(255, 91, 46, 0.45), 0 0 3rem rgba(255, 91, 46, 0.18);
+  --glow-cool:   0 0 4rem rgba(91, 124, 255, 0.22);
+  --grain-opacity: 0.07;
+
+  /* ---------- Motion ---------- */
+  /* Signature curves. expo.out for reveals, power4.inOut for transitions. */
+  --ease-out-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-out-back:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-micro:   180ms;   /* hover colour, cursor scale */
+  --dur-ui:      450ms;   /* menus, buttons */
+  --dur-reveal:  1100ms;  /* text line reveals */
+  --dur-scene:   1600ms;  /* page transitions, preloader exit */
+  --stagger:     40ms;    /* per character; 80-120ms per line */
+  --lerp-cursor: 0.18;    /* JS: cursor ring follow factor */
+  --lerp-scroll: 0.1;     /* JS: Lenis lerp */
+  --scrub:       1;       /* JS: ScrollTrigger scrub smoothing (s) */
+
+  /* ---------- Layers ---------- */
+  --z-canvas: 0;  --z-content: 2;  --z-grain: 50;  --z-nav: 60;  --z-cursor: 90;  --z-loader: 100;
+
+  color-scheme: dark;
+}
+
+/* ---------- Variant 1: Lab Paper (light, clinical) ---------- */
+:root[data-theme="lab-paper"] {
+  --c-bg:          #ecebe6;
+  --c-bg-raised:   #f6f5f1;
+  --c-bg-sunken:   #dedcd5;
+  --c-line:        rgba(17, 18, 20, 0.14);
+  --c-line-strong: rgba(17, 18, 20, 0.4);
+  --c-text:        #111214;   /* ~16:1 */
+  --c-text-muted:  #55565c;   /* ~6.6:1 */
+  --c-text-faint:  #85868c;
+  --c-accent:      #2a3cff;   /* electric cobalt, ~6.9:1 on paper */
+  --c-accent-ink:  #ffffff;
+  --c-glow-a: #2a3cff; --c-glow-b: #00a389; --c-glow-c: #ff4d00; --c-glow-d: #9a3cff;
+  --grain-opacity: 0.05;
+  color-scheme: light;
+}
+
+/* ---------- Variant 2: Neon Noir (games, music, launches) ---------- */
+:root[data-theme="neon-noir"] {
+  --c-bg:          #05010d;
+  --c-bg-raised:   #0f0820;
+  --c-bg-sunken:   #020006;
+  --c-line:        rgba(214, 255, 61, 0.18);
+  --c-line-strong: rgba(214, 255, 61, 0.45);
+  --c-text:        #f3f0ff;
+  --c-text-muted:  #a9a2c7;   /* ~8:1 */
+  --c-text-faint:  #6f6890;
+  --c-accent:      #d6ff3d;   /* acid lime */
+  --c-accent-ink:  #05010d;
+  --c-glow-a: #7a2cff; --c-glow-b: #00f0ff; --c-glow-c: #ff2e88; --c-glow-d: #d6ff3d;
+  --font-display: "Unbounded", "Bricolage Grotesque", system-ui, sans-serif;
+  --tr-display: -0.04em;
+  --grain-opacity: 0.1;
+}
+
+/* ---------- Reduced motion: collapse durations, keep state changes ---------- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-micro: 1ms; --dur-ui: 1ms; --dur-reveal: 1ms; --dur-scene: 1ms;
+    --stagger: 0ms; --lerp-cursor: 1; --lerp-scroll: 1; --scrub: 0;
+  }
+}

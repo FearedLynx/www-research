@@ -1,0 +1,58 @@
+# CC-1 · References: Swiss / Editorial / Minimal
+
+All awards below marked **✔ verified** were checked on the site's Awwwards page (`awwwards.com/sites/<slug>`) on 2026-11-03: page title, award heading with date, "Visit Site" link and credited creators. **? unverified** means I could not confirm it on an award page.
+
+Screenshots of most entries are in `images/` (see `images/CREDITS.md`).
+
+## A. Awarded sites
+
+| # | Site | URL | Creator (portfolio) | Award | What to steal |
+|---|---|---|---|---|---|
+| 1 | **Pangram Pangram Foundry** | https://pangrampangram.com | Locomotive, Montréal (https://locomotive.ca) | Awwwards **Site of the Day**, 11 Nov 2021 ✔ ([page](https://www.awwwards.com/sites/pangram-pangram-foundry)) | Type as the hero: "Neue Mtl (*Aa→ë) v2.0 New!" at ~13vw over a monochrome Buckminster Fuller Biosphère photo. Headline set flush-left, tight leading (~0.9). Small glass-panel card bottom-left as the only "UI". Tiny `®`-style wordmark and `Cart⁰` superscript count in the header. Pagination dots + "Scroll" label in 12px. |
+| 2 | **Editorial New** (type microsite) | https://editorialnew.com | Locomotive + Pangram Pangram | Awwwards **Site of the Day**, 28 Oct 2019 ✔ ([page](https://www.awwwards.com/sites/editorial-new)) | A whole site to sell one typeface: specimen as narrative. Serif display against grotesk UI is the editorial variant of Swiss. Steal the "one product, one page, huge type" format for a single project or book. |
+| 3 | **Grids (DES Season 03)** | https://grids03.obys.agency | Obys Agency (https://obys.agency) with Viacheslav & Olha Olianishyn | Awwwards **Site of the Day**, 2 Nov 2026 ✔ ([page](https://www.awwwards.com/sites/grids-1)) | The site *teaches* grids by being one. Black horizontal bars as section dividers; episode index as hairline-ruled rows (`16 / Working on Project pt.2 / 34:08`); "GRIDS" and "S03" set at the same size at opposite ends of the top row; barcode-like vertical stripes in the left margin. Steal: visible structure + index rows + timecode metadata. |
+| 4 | **Dinamo Typefaces** | https://abcdinamo.com | Humans & Machines (https://www.humans-machines.com), Raffael Stüken, Thorsten Kozik, Sebastian Schäfer | Awwwards **Honorable Mention**, 27 Oct 2020 ✔ ([page](https://www.awwwards.com/sites/dinamo-typefaces)) | Swiss foundry whose UI is pure grotesk lists (`Typefaces / Custom / Hardware / Studio...` stacked top-left, `Bag (0)` top-right) but whose hero is a surreal 3D scene. Steal: keep the chrome strictly Swiss so one wild image can carry the brand. |
+| 5 | **Nouvelle Noire Swiss Type Foundry** | http://www.nouvellenoire.ch | Nouvelle Noire, Zürich | Awwwards **Honorable Mention**, 8 Feb 2023 ✔ ([page](https://www.awwwards.com/sites/nouvelle-noire-swiss-type-foundry)) | Specimen blocks in a strict 3-column grid, each a single colour field (yellow, pink, mint). A single giant "O" glyph filling a cell. Weight ladder `Black / Heavy / Bold / Med'm / Regular / Light / Thin`. Sticky tester bar with font picker, size slider (`210`) and feature dropdowns. |
+| 6 | **Studio: Mann** | https://www.studiomann.co | Studio: Mann (self) | Awwwards **Honorable Mention**, 25 Jan 2023 ✔ ([page](https://www.awwwards.com/sites/studio-mann)) | Giant cropped "M" glued to the top-left corner. Everything sits in 1px-ruled boxes. Project index on the right: name + `Launched 2022` in a contrasting serif, filter tabs with ~~strikethrough~~ for the active one, and a big project counter `015`. Steal the index-plus-image-grid split. |
+| 7 | **Wiemer** (furniture) | https://www.wiemer.store | Double Play + Samuel Siebler | Awwwards **Honorable Mention**, 7 Oct 2026 ✔ ([page](https://www.awwwards.com/sites/wiemer)) | Stainless-steel furniture sold with Bauhaus restraint: full-bleed interior video, the wordmark centred at ~9vw in a neo-grotesk, two-line German subline, and a single "Für Warteliste eintragen →" CTA. Steal: one headline, one line, one CTA on a moving image. |
+| 8 | **Norm Architects** | http://normcph.com | Norm Architects, Copenhagen (credits not listed on the award page) | Awwwards **Honorable Mention**, 9 Jan 2015 ✔ ([page](https://www.awwwards.com/sites/norm-architects)) | Architecture firm: material close-up photography (weathered timber), widely tracked uppercase sans `NATURE AND AESTHETICS`, tiny centred wordmark. Steal the "material as hero, text as label" approach for architecture. Note: the current site sits behind a bot check. |
+| 9 | **Aristide Benoist (Swiss Portfolio)** | https://www.v3.aristidebenoist.com (archived; domain no longer resolves) | Aristide Benoist (https://aristidebenoist.com) + Ben Mingo | Awwwards **Site of the Day**, 28 Oct 2018 ✔ ([page](https://www.awwwards.com/sites/aristide-swiss-portfolio)) | A developer portfolio explicitly labelled "Swiss" (screenshot): left half a tall black-and-white plant photo on warm off-white, right half `PORTFOLIO / FROM / MALAGA, / SPAIN` in heavy uppercase grotesk with the second line indented (a classic Swiss stagger), and a tiny 3-column caption block (`Aristide Benoist / Freelance Developer / Malaga, SP` · `2015 — 2018`). Steal the staggered indent and the caption block. |
+| 10 | **Dennis Snellenberg** | https://dennissnellenberg.com | Dennis Snellenberg (self) | Awwwards **Site of the Day**, 4 Apr 2022 ✔ ([page](https://www.awwwards.com/sites/dennis-snellenberg)) | Minimal freelancer portfolio: the name runs as a huge white marquee cropped by both viewport edges over a grey portrait (see og image). From the live site (not re-checked): work list with hover preview and magnetic round buttons. Steal the edge-cropped name; skip the magnetic buttons (now a cliché). |
+| 11 | **Mathieu Lévesque** | https://mathieulevesque.com | Locomotive + Louis Paquet + Jérémy Minié | Awwwards **Site of the Day**, 7 Nov 2018 ✔ ([page](https://www.awwwards.com/sites/mathieu-levesque)) | Commercial food/product photographer portfolio. Listed as a third Locomotive SOTD; I did not re-inspect the layout, so treat it as a lead to explore rather than a described technique. |
+| 12 | **Victor Pattyn** | https://www.victorpattyn.com | Studio Scale | Awwwards **Honorable Mention**, 8 Dec 2021 ✔ ([page](https://www.awwwards.com/sites/victor-pattyn)) | Photographer portfolio (award description: "Personal portfolio of the independent and talented photographer"). Layout not re-inspected; a lead to explore. |
+| 13 | **The Perfect Grid** (book site) | http://www.theperfectgridbook.com (domain now taken over by an unrelated gambling site, do not visit) | Aleš Nešetřil | Awwwards **Honorable Mention**, 29 May 2017 ✔ ([page](https://www.awwwards.com/sites/the-perfect-grid)) | A site for a book about grids that exposed its own column structure. Use the Awwwards screenshots only. |
+| 14 | **Johannes Itten – Swiss artist** | https://johannes-itten.tilda.ws | Viktoria Topalova | Awwwards **Honorable Mention**, 3 Dec 2021 ✔ ([page](https://www.awwwards.com/sites/johannes-itten-swiss-artist)) | Biography longread treated like a Bauhaus/Swiss exhibition catalogue: colour-field blocks, numbered chapters. Shows the style works in a no-code tool (Tilda). |
+
+Other reference galleries for this style (not awards): Typewolf (https://www.typewolf.com) site-of-the-day for type pairings; minimal.gallery (https://minimal.gallery); Awwwards collections "minimal" and "typography".
+
+## B. Creators and studios who specialise in this style
+
+| Creator | Portfolio | Signature moves |
+|---|---|---|
+| **Locomotive** (Montréal) | https://locomotive.ca | Built Pangram Pangram, Editorial New and Mathieu Lévesque (3 × SOTD above, ✔). Type-led heroes, Locomotive Scroll smooth scrolling, `®` wordmarks, monochrome photography, tight neo-grotesk headlines. |
+| **Obys Agency** (Ukraine) | https://obys.agency | Grids (SOTD 2026 ✔) and the DES educational series. Visible grids, index tables with timecodes, black bars, editorial black and white photography, precise micro-typography. |
+| **Experimental Jetset** (Amsterdam) | https://www.jetset.nl (online archive) | Dutch-modernist heirs of Swiss style: Helvetica, primary colours, strict lists; their own site is a near-raw HTML archive. Bridge between this folder and EC-2. No web award verified. |
+| **Grilli Type** (Lucerne) | https://www.grillitype.com | Swiss foundry (GT America, GT Walsheim, GT Flexa). Sites are clean specimen systems with interactive testers. No award verified for the site. |
+| **Dinamo** (Basel/Berlin) | https://abcdinamo.com | Swiss foundry; Swiss list UI + surreal imagery (HM 2020 ✔). |
+| **Studio Feixen** (Lucerne) | https://www.studiofeixen.ch | Swiss studio known for type-driven, colourful posters and kinetic type; useful for the expressive edge of the style. No web award verified. |
+| **Order** (New York; Jesse Reed & Hamish Smyth) | https://order.design | Identity studio behind the *Standards Manual* reissues (NASA, NYCTA). Site states: "We do everything for a reason, never for decoration." Grid-strict case studies. |
+| **Studio Dumbar** (Rotterdam) | https://studiodumbar.com | Dutch identity studio: modular systems, kinetic grids, strong single accents. |
+
+## C. Style-specific reading (beyond `00_Research/`)
+
+- Müller-Brockmann, J. (1981). *Grid Systems in Graphic Design.* Niggli. The canonical grid manual.
+- Hollis, R. (2006). *Swiss Graphic Design: The Origins and Growth of an International Style, 1920–1965.* Laurence King.
+- Ruder, E. (1967). *Typographie: A Manual of Design.* Niggli.
+- Gerstner, K. (1964). *Designing Programmes.* Niggli. Grids as programmes, the ancestor of design systems.
+- Fornari, D. & Profeta, G. (2016). Swiss Style beyond the border: Swiss graphic designers in Italy. *Proc. ICDHS 2016.* doi:10.5151/despro-icdhs2016-02_007
+- Tuch, A. N., Presslaber, E. E., Stöcklin, M., Opwis, K. & Bargas-Avila, J. A. (2012). The role of visual complexity and prototypicality regarding first impression of websites. *International Journal of Human-Computer Studies*, 70(11). doi:10.1016/j.ijhcs.2012.06.003
+- Reinecke, K., Yeh, T., Miratrix, L. et al. (2013). Predicting users' first impressions of website aesthetics with a quantification of perceived visual complexity and colorfulness. *CHI '13.* doi:10.1145/2470654.2481281
+- Lindgaard, G., Fernandes, G., Dudek, C. & Brown, J. (2006). Attention web designers: You have 50 milliseconds to make a good first impression! *Behaviour & Information Technology*, 25(2). doi:10.1080/01449290500330448
+- Dyson, M. C. & Haselgrove, M. (2001). The influence of reading speed and line length on the effectiveness of reading from screen. *IJHCS*, 54(4). doi:10.1006/ijhc.2001.0458
+- Dyson, M. C. (2004). How physical text layout affects reading from screen. *Behaviour & Information Technology*, 23(6). doi:10.1080/01449290410001715714
+- Ngo, D. C. L., Teo, L. S. & Byrne, J. G. (2003). Modelling interface aesthetics. *Information Sciences*, 152. https://doi.org/10.1016/S0020-0255(02)00404-8 ✔
+- Bauerly, M. & Liu, Y. (2006). Computational modeling and experimental investigation of effects of compositional elements on interface and design aesthetics. *IJHCS*, 64(8). https://doi.org/10.1016/j.ijhcs.2006.01.002 ✔
+- Rello, L., Pielot, M. & Marcos, M.-C. (2016). Make it big! The effect of font size and line spacing on online readability. *CHI '16.* https://doi.org/10.1145/2858036.2858204 ✔
+- Lavie, T. & Tractinsky, N. (2004); Moshagen, M. & Thielsch, M. T. (2010); Reber, R., Schwarz, N. & Winkielman, P. (2004): see `00_Research/academic-findings.md`.
+
+DOIs for Tuch, Reinecke, Lindgaard, Dyson and Fornari were confirmed via the Crossref API. Ngo, Bauerly and Rello were confirmed via Crossref afterwards (DOIs above).

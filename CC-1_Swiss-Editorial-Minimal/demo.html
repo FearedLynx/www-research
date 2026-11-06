@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RASTER/7 — Büro für Architektur, Basel</title>
+<meta name="description" content="RASTER/7 is a fictional architecture office in Basel that designs every building on a seven-module grid. Demo page for the CC-1 Swiss / Editorial / Minimal style.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ---------- tokens (mirrors tokens.css) ---------- */
+:root{
+  --c-paper:#F2F1EC; --c-paper-2:#E9E7E0; --c-ink:#111; --c-ink-2:#5C5C58;
+  --c-hairline:#CFCDC6; --c-signal:#E2231A; --c-signal-text:#B3170F;
+  --font-sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --fs-caption:.75rem; --fs-small:.875rem;
+  --fs-body:clamp(1rem,.95rem + .25vw,1.1875rem);
+  --fs-lead:clamp(1.375rem,1.1rem + 1.2vw,2.25rem);
+  --fs-h2:clamp(2.25rem,1.5rem + 3.6vw,5rem);
+  --cols:7; --gutter:clamp(10px,1.4vw,24px); --margin:clamp(16px,3vw,48px);
+  --ease:cubic-bezier(.2,.7,.1,1); --dur:420ms; --draw:1600ms;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--c-paper);color:var(--c-ink);font-family:var(--font-sans);
+  font-size:var(--fs-body);line-height:1.45;font-variation-settings:"wdth" 100;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+::selection{background:var(--c-signal);color:#fff}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--c-ink);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.mono{font-family:var(--font-mono);font-size:var(--fs-caption);letter-spacing:.02em}
+.label{font-family:var(--font-mono);font-size:var(--fs-caption);letter-spacing:.04em;text-transform:uppercase;color:var(--c-ink-2)}
+.tab{font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));column-gap:var(--gutter);padding-inline:var(--margin)}
+
+/* ---------- header ---------- */
+.top{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--c-paper) 92%,transparent);
+  backdrop-filter:blur(6px);border-bottom:1px solid var(--c-hairline)}
+.top .grid{align-items:baseline;padding-block:14px}
+.brand{grid-column:1/3;font-weight:700;letter-spacing:-.01em;text-decoration:none;font-size:1rem}
+.brand sup{font-size:.55em;font-weight:500;vertical-align:.7em}
+.nav{grid-column:3/6;display:flex;gap:clamp(12px,2.2vw,36px);list-style:none;margin:0;padding:0;font-size:.9375rem}
+.nav a{text-decoration:none;font-variation-settings:"wdth" 100;transition:font-variation-settings var(--dur) var(--ease)}
+.nav a:hover,.nav a:focus-visible{font-variation-settings:"wdth" 125}
+.nav sup{font-family:var(--font-mono);font-size:.62rem;margin-left:1px}
+.meta{grid-column:6/8;display:flex;justify-content:flex-end;gap:16px;align-items:baseline}
+.gridbtn{font-family:var(--font-mono);font-size:var(--fs-caption);border:1px solid var(--c-ink);padding:3px 7px;letter-spacing:.04em}
+.gridbtn[aria-pressed="true"]{background:var(--c-ink);color:var(--c-paper)}
+.gridbtn kbd{font:inherit;opacity:.6}
+
+/* ---------- grid overlay (signature 1) ---------- */
+.overlay{position:fixed;inset:0;z-index:25;pointer-events:none;opacity:0;transition:opacity var(--dur) var(--ease)}
+.overlay.on{opacity:1}
+.overlay .grid{height:100%}
+.overlay .col{position:relative;background:rgba(226,35,26,.055);border-inline:1px solid rgba(226,35,26,.35)}
+.overlay .axis{position:absolute;top:64px;left:50%;transform:translateX(-50%);width:26px;height:26px;border:1px solid var(--c-signal);
+  border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);font-size:11px;color:var(--c-signal-text);background:var(--c-paper)}
+.overlay .baseline{position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0 23px,rgba(17,17,17,.06) 23px 24px)}
+
+/* ---------- hero ---------- */
+.hero{padding-top:clamp(24px,5vw,72px)}
+.display{grid-column:1/-1;margin:0;font-weight:800;font-size:clamp(4.2rem,22.5vw,27rem);line-height:.8;
+  letter-spacing:-.045em;font-variation-settings:"wdth" 66;white-space:nowrap;margin-left:-.04em}
+.display .seven{color:var(--c-signal)}
+.display .slash{font-weight:200}
+.line{display:block;overflow:hidden}
+.line > span{display:inline-block;transform:translateY(105%);transition:transform 1100ms var(--ease)}
+.ready .line > span{transform:none}
+.hero-row{margin-top:clamp(28px,4vw,64px);row-gap:28px;align-items:start}
+.hero-meta{grid-column:1/3}
+.hero-meta p{margin:0 0 4px}
+.lead{grid-column:3/5;font-size:var(--fs-lead);line-height:1.12;letter-spacing:-.02em;margin:0;font-weight:450}
+.lead em{font-style:normal;color:var(--c-ink-2)}
+.axo{grid-column:5/8;grid-row:1/3;margin:0}
+.axo svg{width:100%;height:auto;display:block;overflow:visible}
+.axo figcaption{margin-top:10px;display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--c-ink);padding-top:8px}
+.hero-cta{grid-column:3/5;display:flex;gap:28px;font-size:.9375rem}
+.hero-cta a{text-decoration:none;border-bottom:1px solid var(--c-ink);padding-bottom:2px}
+.hero-cta a:hover{color:var(--c-signal-text);border-color:var(--c-signal)}
+.draw path,.draw line,.draw polygon,.draw polyline{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset var(--draw) var(--ease)}
+.ready .draw path,.ready .draw line,.ready .draw polygon,.ready .draw polyline{stroke-dashoffset:0}
+
+/* ---------- section scaffolding ---------- */
+section{padding-block:clamp(72px,10vw,160px) 0}
+.bar{height:12px;background:var(--c-ink);margin-inline:var(--margin)}
+.sec-head{align-items:baseline;padding-top:12px;margin-bottom:clamp(28px,4vw,56px)}
+.sec-no{grid-column:1/2}
+.sec-title{grid-column:2/6;margin:0;font-size:var(--fs-h2);line-height:.95;letter-spacing:-.03em;font-weight:700;font-variation-settings:"wdth" 80}
+.sec-aside{grid-column:6/8;text-align:right}
+
+/* ---------- index (signature 2) ---------- */
+.index-wrap{align-items:start}
+.preview{grid-column:1/3;position:sticky;top:84px;margin:0}
+.preview svg{width:100%;height:auto;display:block;background:var(--c-paper-2)}
+.preview figcaption{margin-top:8px;display:grid;gap:2px}
+.preview .pv-title{font-weight:600;font-size:1rem}
+.index{grid-column:3/8}
+.filters{display:flex;gap:22px;flex-wrap:wrap;align-items:baseline;margin-bottom:14px;font-size:.9375rem}
+.filters button{color:var(--c-ink-2)}
+.filters button[aria-pressed="true"]{color:var(--c-ink);text-decoration:line-through;text-decoration-thickness:1px}
+.filters .count{margin-left:auto;font-size:clamp(2rem,4vw,3.5rem);font-weight:300;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+table{width:100%;border-collapse:collapse;font-size:var(--fs-small)}
+th{font-family:var(--font-mono);font-weight:400;font-size:var(--fs-caption);letter-spacing:.04em;text-transform:uppercase;color:var(--c-ink-2);text-align:left;padding:0 8px 8px 0;border-bottom:1px solid var(--c-ink)}
+td{padding:0;border-bottom:1px solid var(--c-hairline);vertical-align:baseline}
+td > *, td{font-variant-numeric:tabular-nums}
+tr.row td{transition:background var(--dur) var(--ease)}
+tr.row:hover td,tr.row.active td{background:var(--c-paper-2)}
+.rowbtn{display:block;width:100%;text-align:left;padding:13px 8px 13px 0;font-size:clamp(1rem,.9rem + .5vw,1.375rem);font-weight:500;letter-spacing:-.01em}
+.rowbtn:focus-visible{outline-offset:-2px}
+td.c{padding:13px 8px 13px 0;color:var(--c-ink-2)}
+td.no{width:3.2em;font-family:var(--font-mono);font-size:var(--fs-caption);color:var(--c-ink-2);padding-left:4px}
+tr.active td.no{color:var(--c-signal-text)}
+tr.active td.no::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--c-signal);margin-right:6px;vertical-align:1px}
+td.r,th.r{text-align:right;padding-right:4px}
+tr.hide{display:none}
+
+/* ---------- principles ---------- */
+.principles{row-gap:48px}
+.pr{grid-column:span 2;border-top:1px solid var(--c-ink);padding-top:14px}
+.pr:first-child{grid-column:2/4}
+.pr .n{font-size:clamp(3rem,7vw,7rem);line-height:.8;font-weight:200;letter-spacing:-.05em;display:block;margin-bottom:22px;font-variation-settings:"wdth" 62}
+.pr h3{margin:0 0 10px;font-size:1.25rem;letter-spacing:-.01em}
+.pr p{margin:0;color:var(--c-ink-2);max-width:34ch}
+
+/* ---------- scale (signature 3) ---------- */
+.scale-wrap{row-gap:20px}
+.scale-ctrl{grid-column:1/3;display:flex;flex-direction:column;gap:6px}
+.scale-ctrl button{text-align:left;font-size:clamp(2rem,4.6vw,4.5rem);line-height:1;font-weight:300;letter-spacing:-.04em;color:var(--c-hairline);transition:color var(--dur) var(--ease),font-variation-settings var(--dur) var(--ease);font-variant-numeric:tabular-nums}
+.scale-ctrl button:hover{color:var(--c-ink-2)}
+.scale-ctrl button[aria-pressed="true"]{color:var(--c-ink);font-weight:600}
+.scale-ctrl p{margin:16px 0 0;max-width:30ch;color:var(--c-ink-2);font-size:.9375rem}
+.plan{grid-column:3/8;margin:0;border:1px solid var(--c-ink);background:#F7F6F2;position:relative}
+.plan svg{display:block;width:100%;height:auto;aspect-ratio:5/3}
+.plan figcaption{display:flex;justify-content:space-between;padding:8px 10px;border-top:1px solid var(--c-ink);gap:10px;flex-wrap:wrap}
+.scalebar{display:flex;align-items:center;gap:8px}
+.scalebar i{display:block;height:6px;width:80px;background:linear-gradient(90deg,var(--c-ink) 0 25%,transparent 25% 50%,var(--c-ink) 50% 75%,transparent 75%);border:1px solid var(--c-ink)}
+
+/* ---------- facts ---------- */
+.facts{row-gap:32px}
+.fact{grid-column:span 1;border-top:1px solid var(--c-hairline);padding-top:10px}
+.fact:first-child{grid-column:1/3}
+.fact b{display:block;font-size:clamp(2.6rem,6vw,6rem);font-weight:300;letter-spacing:-.05em;line-height:.9;font-variant-numeric:tabular-nums;margin-bottom:6px}
+.fact:first-child b{font-weight:700;font-variation-settings:"wdth" 62}
+.team{grid-column:3/8;columns:3 180px;column-gap:var(--gutter);margin:12px 0 0;padding:0;list-style:none;font-size:.9375rem}
+.team li{break-inside:avoid;padding:6px 0;border-bottom:1px solid var(--c-hairline);display:flex;justify-content:space-between;gap:8px}
+.team li span{color:var(--c-ink-2);font-family:var(--font-mono);font-size:var(--fs-caption)}
+
+/* ---------- footer ---------- */
+footer{margin-top:clamp(96px,12vw,200px);border-top:12px solid var(--c-ink);padding-block:18px 28px}
+.f-big{grid-column:1/-1;margin:clamp(20px,4vw,48px) 0 clamp(36px,6vw,80px)}
+.f-big a{display:inline-block;text-decoration:none;font-size:clamp(2.6rem,10.5vw,12rem);font-weight:700;letter-spacing:-.045em;line-height:.85;
+  font-variation-settings:"wdth" 62;transition:font-variation-settings 700ms var(--ease)}
+.f-big a:hover,.f-big a:focus-visible{font-variation-settings:"wdth" 110}
+.f-big a .arr{color:var(--c-signal);font-weight:300}
+.fcol{grid-column:span 2;font-size:.9375rem}
+.fcol:last-child{grid-column:7/8;text-align:right}
+.fcol p{margin:0 0 4px}
+
+/* ---------- reveal on scroll ---------- */
+.rv{opacity:0;transform:translateY(18px);transition:opacity 900ms var(--ease),transform 900ms var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .nav{grid-column:3/8;justify-content:flex-end}
+  .meta{grid-column:1/-1;justify-content:space-between;margin-top:8px}
+  .lead{grid-column:1/-1}.hero-meta{grid-column:1/-1;order:3;display:flex;gap:24px;flex-wrap:wrap}
+  .axo{grid-column:1/-1;grid-row:auto}
+  .hero-cta{grid-column:1/-1}
+  .preview{grid-column:1/-1;position:relative;top:0;display:grid;grid-template-columns:1fr 1fr;gap:var(--gutter);margin-bottom:24px}
+  .index{grid-column:1/-1}
+  .pr,.pr:first-child{grid-column:1/-1}
+  .scale-ctrl{grid-column:1/-1;flex-direction:row;gap:18px;flex-wrap:wrap}
+  .scale-ctrl p{flex-basis:100%}
+  .plan{grid-column:1/-1}
+  .fact,.fact:first-child{grid-column:span 3}
+  .facts .fact:first-child{grid-column:1/-1}
+  .team{grid-column:1/-1}
+  .fcol,.fcol:last-child{grid-column:span 7;text-align:left;margin-bottom:12px}
+  .sec-title{grid-column:2/-1}.sec-aside{grid-column:2/-1;text-align:left;margin-top:8px}
+}
+@media (max-width:560px){
+  .nav{display:none}
+  .brand{grid-column:1/5}
+  .meta{grid-column:5/8;margin-top:0;justify-content:flex-end}
+  .meta .clock{display:none}
+  td.hide-s,th.hide-s{display:none}
+  .filters .count{flex-basis:100%;margin-left:0;order:-1}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+  .line > span{transform:none}.rv{opacity:1;transform:none}
+  .draw path,.draw line,.draw polygon,.draw polyline{stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+<a class="sr-only" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="grid">
+    <a class="brand" href="#top" aria-label="RASTER/7 home">RASTER/7<sup>®</sup></a>
+    <ul class="nav">
+      <li><a href="#projects">Projects<sup>(12)</sup></a></li>
+      <li><a href="#stance">Stance</a></li>
+      <li><a href="#scale">Scale</a></li>
+      <li><a href="#office">Office</a></li>
+    </ul>
+    <div class="meta">
+      <span class="mono tab clock" aria-label="Local time in Basel"><span id="clock">--:--:--</span> Basel</span>
+      <button class="gridbtn" id="gridbtn" aria-pressed="false" title="Show the 7-module grid (key G)">Grid <kbd>G</kbd></button>
+    </div>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" aria-hidden="true">
+  <div class="grid" id="overlayGrid"></div>
+</div>
+
+<main id="main">
+  <!-- ======================= HERO ======================= -->
+  <section class="hero" id="top" style="padding-top:clamp(24px,5vw,72px)">
+    <div class="grid">
+      <h1 class="display" aria-label="RASTER/7">
+        <span class="line"><span>RASTER<span class="slash">/</span><span class="seven">7</span></span></span>
+      </h1>
+    </div>
+
+    <div class="grid hero-row">
+      <div class="hero-meta label">
+        <p>Büro für Architektur</p>
+        <p>Basel, since 2011</p>
+        <p class="tab">47.5596° N · 7.5886° E</p>
+      </div>
+
+      <p class="lead rv">We design every building on a grid of seven modules. <em>Housing, schools and small public buildings, drawn to the millimetre and built to last a century.</em></p>
+
+      <figure class="axo">
+        <svg id="axo" class="draw" viewBox="0 0 620 470" role="img" aria-labelledby="axoT">
+          <title id="axoT">Axonometric line drawing of the Breite housing block: three stepped volumes on a seven-bay grid.</title>
+        </svg>
+        <figcaption class="mono"><span>Fig. 01 — Wohnhaus Breite, Basel, 2025</span><span class="tab">Axo 1:200</span></figcaption>
+      </figure>
+
+      <div class="hero-cta rv">
+        <a href="#projects">Index of work ↓</a>
+        <a href="#office">The office →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= INDEX ======================= -->
+  <section id="projects" aria-labelledby="pT">
+    <div class="bar" role="presentation"></div>
+    <div class="grid sec-head">
+      <span class="sec-no label">A — 01</span>
+      <h2 class="sec-title" id="pT">Index of work</h2>
+      <span class="sec-aside label">2018 — 2026</span>
+    </div>
+
+    <div class="grid index-wrap">
+      <figure class="preview" aria-live="polite">
+        <svg id="pv" viewBox="0 0 400 300" role="img" aria-labelledby="pvT"><title id="pvT">South elevation of the selected project</title></svg>
+        <figcaption>
+          <span class="pv-title" id="pvName">Wohnhaus Breite</span>
+          <span class="mono" id="pvMeta">South elevation · 1:200 · Housing</span>
+        </figcaption>
+      </figure>
+
+      <div class="index">
+        <div class="filters" role="group" aria-label="Filter projects by type">
+          <button aria-pressed="true" data-f="all">Everything</button>
+          <button aria-pressed="false" data-f="Housing">Housing</button>
+          <button aria-pressed="false" data-f="Culture">Culture</button>
+          <button aria-pressed="false" data-f="Education">Education</button>
+          <button aria-pressed="false" data-f="Work">Work</button>
+          <span class="count" id="count" aria-live="polite">012</span>
+        </div>
+        <table>
+          <caption class="sr-only">Projects by RASTER/7, newest first. Activate a project name to preview its elevation.</caption>
+          <thead><tr><th scope="col">No.</th><th scope="col">Project</th><th scope="col" class="hide-s">Place</th><th scope="col">Year</th><th scope="col" class="hide-s">Type</th><th scope="col" class="r hide-s">m²</th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= STANCE ======================= -->
+  <section id="stance" aria-labelledby="sT">
+    <div class="bar" role="presentation"></div>
+    <div class="grid sec-head">
+      <span class="sec-no label">A — 02</span>
+      <h2 class="sec-title" id="sT">Three rules we do not break</h2>
+    </div>
+    <div class="grid principles">
+      <article class="pr rv"><span class="n tab">01</span><h3>The grid comes first.</h3><p>Every plan starts as seven equal bays. Walls, windows and furniture find their place inside it, so the building stays legible as it changes over decades.</p></article>
+      <article class="pr rv"><span class="n tab">02</span><h3>Nothing is decoration.</h3><p>If an element has no structural, climatic or social job, we remove it. What remains is allowed to be beautiful.</p></article>
+      <article class="pr rv"><span class="n tab">03</span><h3>Build for a hundred years.</h3><p>Brick, timber, lime render. Materials that age honestly, repair simply and can be taken apart again.</p></article>
+    </div>
+  </section>
+
+  <!-- ======================= SCALE ======================= -->
+  <section id="scale" aria-labelledby="scT">
+    <div class="bar" role="presentation"></div>
+    <div class="grid sec-head">
+      <span class="sec-no label">A — 03</span>
+      <h2 class="sec-title" id="scT">One drawing, three scales</h2>
+      <span class="sec-aside label">Lysbüchel, Basel</span>
+    </div>
+    <div class="grid scale-wrap">
+      <div class="scale-ctrl" role="group" aria-label="Drawing scale">
+        <button aria-pressed="true" data-s="500">1:500</button>
+        <button aria-pressed="false" data-s="200">1:200</button>
+        <button aria-pressed="false" data-s="50">1:50</button>
+        <p id="scaleNote">The block in its street: four courtyards, one public passage.</p>
+      </div>
+      <figure class="plan">
+        <svg id="plan" viewBox="0 0 1000 600" role="img" aria-labelledby="planT">
+          <title id="planT">Site plan of the Lysbüchel cooperative. Zoom levels show the site, the building on its seven-bay grid, and a wall detail.</title>
+          <defs>
+            <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#111" stroke-width=".6"/></pattern>
+            <pattern id="dots" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".45" fill="#111"/></pattern>
+          </defs>
+          <g id="planArt" fill="none" stroke="#111" stroke-width="1"></g>
+        </svg>
+        <figcaption class="mono">
+          <span id="planCap">Site plan · North ↑</span>
+          <span class="scalebar"><i aria-hidden="true"></i><span id="barLabel" class="tab">0 — 20 m</span></span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ======================= OFFICE ======================= -->
+  <section id="office" aria-labelledby="oT">
+    <div class="bar" role="presentation"></div>
+    <div class="grid sec-head">
+      <span class="sec-no label">A — 04</span>
+      <h2 class="sec-title" id="oT">The office</h2>
+      <span class="sec-aside label">Feldbergstrasse 7</span>
+    </div>
+    <div class="grid facts">
+      <div class="fact rv"><b class="tab">7</b><span class="label">Modules per plan</span></div>
+      <div class="fact rv"><b class="tab">15</b><span class="label">Years</span></div>
+      <div class="fact rv"><b class="tab">31</b><span class="label">Buildings</span></div>
+      <div class="fact rv"><b class="tab">09</b><span class="label">Competitions won</span></div>
+      <div class="fact rv"><b class="tab">14</b><span class="label">People</span></div>
+      <div class="fact rv"><b class="tab">01</b><span class="label">Model shop</span></div>
+    </div>
+    <div class="grid" style="margin-top:48px">
+      <p class="label" style="grid-column:1/3;margin:12px 0 0">Partners &amp; team</p>
+      <ul class="team">
+        <li>Lena Hofstetter <span>Partner</span></li>
+        <li>Mattia Rüegg <span>Partner</span></li>
+        <li>Noor Amrani <span>Associate</span></li>
+        <li>Jonas Weibel <span>Architect</span></li>
+        <li>Selin Kaya <span>Architect</span></li>
+        <li>Ruedi Frei <span>Model shop</span></li>
+        <li>Anouk Berger <span>Architect</span></li>
+        <li>Tim Okafor <span>Intern</span></li>
+        <li>Clara Zust <span>Office</span></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="grid">
+    <span class="label" style="grid-column:1/4">A — 05 · Contact</span>
+    <span class="label" style="grid-column:4/8;text-align:right">Fictional studio · style demo</span>
+    <p class="f-big"><a href="mailto:studio@raster7.example">Write to us<span class="arr"> →</span></a></p>
+    <div class="fcol"><p class="label">Address</p><p>Feldbergstrasse 7<br>4057 Basel, Switzerland</p></div>
+    <div class="fcol"><p class="label">Contact</p><p>studio@raster7.example<br><span class="tab">+41 61 000 00 07</span></p></div>
+    <div class="fcol"><p class="label">Colophon</p><p>Set in Archivo &amp; IBM Plex Mono.<br>Grid: 7 modules, 24px baseline.</p></div>
+    <div class="fcol"><p class="label">©</p><p class="tab">2011–2026</p></div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const NS = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs = {}, parent) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); if (parent) parent.appendChild(n); return n; };
+
+  /* ---------- live Basel clock ---------- */
+  const clock = document.getElementById('clock');
+  const fmt = new Intl.DateTimeFormat('de-CH', { timeZone: 'Europe/Zurich', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+  const tick = () => clock.textContent = fmt.format(new Date());
+  tick(); setInterval(tick, 1000);
+
+  /* ---------- 7-module grid overlay with axis bubbles A–G ---------- */
+  const og = document.getElementById('overlayGrid');
+  'ABCDEFG'.split('').forEach(l => { const c = document.createElement('div'); c.className = 'col'; c.innerHTML = `<span class="axis">${l}</span>`; og.appendChild(c); });
+  const bl = document.createElement('div'); bl.className = 'baseline'; document.getElementById('overlay').prepend(bl);
+  const gbtn = document.getElementById('gridbtn'), ov = document.getElementById('overlay');
+  const toggleGrid = () => { const on = !ov.classList.contains('on'); ov.classList.toggle('on', on); gbtn.setAttribute('aria-pressed', on); };
+  gbtn.addEventListener('click', toggleGrid);
+  addEventListener('keydown', e => { if ((e.key === 'g' || e.key === 'G') && !e.metaKey && !e.ctrlKey && !/input|textarea/i.test(e.target.tagName)) toggleGrid(); });
+
+  /* ---------- isometric hero drawing ---------- */
+  const axo = document.getElementById('axo');
+  const C = Math.cos(Math.PI / 6), S = Math.sin(Math.PI / 6), U = 15.5, OX = 290, OY = 268;
+  const P = (x, y, z) => [OX + (x - y) * C * U, OY + (x + y) * S * U - z * U];
+  const pts = a => a.map(p => P(...p).map(v => v.toFixed(1)).join(',')).join(' ');
+  let order = 0;
+  const poly = (arr, extra = {}) => el('polygon', Object.assign({ points: pts(arr), pathLength: 1, fill: '#F2F1EC', stroke: '#111', 'stroke-width': 1.1, style: `transition-delay:${(order++) * 70}ms` }, extra), axo);
+  const ln = (a, b, w = .6, col = '#111') => el('line', { x1: P(...a)[0], y1: P(...a)[1], x2: P(...b)[0], y2: P(...b)[1], pathLength: 1, stroke: col, 'stroke-width': w, style: `transition-delay:${(order++) * 18 + 500}ms` }, axo);
+  // ground grid: 7 bays (x) by 5 (y), dashed
+  for (let i = 0; i <= 14; i += 2) ln([i, -1, 0], [i, 11, 0], .4, '#CFCDC6');
+  for (let j = 0; j <= 10; j += 2) ln([-1, j, 0], [15, j, 0], .4, '#CFCDC6');
+  // volumes [x,y,w,d,h]  drawn back-to-front
+  const vols = [[0, 0, 6, 10, 9], [6, 0, 4, 10, 6], [10, 0, 4, 10, 3]];
+  vols.forEach(([x, y, w, d, h]) => {
+    poly([[x, y + d, 0], [x + w, y + d, 0], [x + w, y + d, h], [x, y + d, h]]);           // front face (y = max)
+    poly([[x + w, y, 0], [x + w, y + d, 0], [x + w, y + d, h], [x + w, y, h]]);           // right face (x = max)
+    poly([[x, y, h], [x + w, y, h], [x + w, y + d, h], [x, y + d, h]], { fill: '#E9E7E0' }); // roof
+    // windows on front face: bays of 2, floors of 3
+    for (let fx = x + .5; fx < x + w - .4; fx += 2) for (let fz = .9; fz < h - .5; fz += 3)
+      poly([[fx, y + d, fz], [fx + 1, y + d, fz], [fx + 1, y + d, fz + 1.5], [fx, y + d, fz + 1.5]], { 'stroke-width': .7 });
+    // floor lines on right face
+    for (let fz = 3; fz < h; fz += 3) ln([x + w, y, fz], [x + w, y + d, fz], .5);
+  });
+  // signal: a red datum mark at entrance
+  el('circle', { cx: P(7, 10, 0)[0], cy: P(7, 10, 0)[1], r: 4, fill: '#E2231A' }, axo);
+  const lbl = (t, x, y, z, a = 'start') => { const [px, py] = P(x, y, z); const n = el('text', { x: px, y: py, 'font-family': 'IBM Plex Mono, monospace', 'font-size': 10, fill: '#5C5C58', 'text-anchor': a }, axo); n.textContent = t; };
+  lbl('+27.00', 0, 0, 9.6, 'end'); lbl('+18.00', 6, 0, 6.6, 'end'); lbl('+9.00', 10, 0, 3.6, 'end'); lbl('A', -1.6, 11.8, 0, 'middle'); lbl('G', 13.4, 12.6, 0, 'middle');
+
+  /* ---------- project data + elevation generator ---------- */
+  const projects = [
+    ['Wohnhaus Breite', 'Basel', 2025, 'Housing', 2140, { bays: 7, floors: 5, roof: 'flat', step: 2 }],
+    ['Bahnhof Nord, competition, 1st prize', 'Basel', 2026, 'Culture', 8600, { bays: 7, floors: 3, roof: 'saw', step: 0 }],
+    ['Rheinbad Pavilion', 'Basel', 2024, 'Culture', 380, { bays: 7, floors: 1, roof: 'flat', step: 0, open: true }],
+    ['Atelierhaus Dreispitz', 'Münchenstein', 2024, 'Work', 1960, { bays: 7, floors: 3, roof: 'saw', step: 0 }],
+    ['Schulhaus Erlenmatt', 'Basel', 2023, 'Education', 4300, { bays: 7, floors: 3, roof: 'flat', step: 0 }],
+    ['Kunsthalle Annex', 'Liestal', 2023, 'Culture', 720, { bays: 5, floors: 2, roof: 'gable', step: 0 }],
+    ['Genossenschaft Lysbüchel', 'Basel', 2022, 'Housing', 5200, { bays: 7, floors: 6, roof: 'flat', step: 0 }],
+    ['Werkhof Birsfelden', 'Birsfelden', 2021, 'Work', 2900, { bays: 7, floors: 2, roof: 'saw', step: 0 }],
+    ['Bibliothek Gundeli', 'Basel', 2021, 'Culture', 1100, { bays: 5, floors: 3, roof: 'flat', step: 1 }],
+    ['Haus am Hang', 'Riehen', 2020, 'Housing', 260, { bays: 3, floors: 2, roof: 'gable', step: 0 }],
+    ['Primarschule Kleinhüningen', 'Basel', 2019, 'Education', 3100, { bays: 7, floors: 2, roof: 'flat', step: 0 }],
+    ['Lagerhalle 7', 'Pratteln', 2018, 'Work', 4800, { bays: 7, floors: 1, roof: 'gable', step: 0 }]
+  ];
+  const pv = document.getElementById('pv');
+  function drawElevation(p) {
+    [...pv.querySelectorAll(':not(title)')].forEach(n => n.remove());
+    const { bays, floors, roof, step, open } = p;
+    const W = 320, x0 = 40, ground = 250, fh = Math.min(34, 170 / floors), bw = W / bays;
+    const g = el('g', { fill: 'none', stroke: '#111', 'stroke-width': 1, class: 'draw' }, pv);
+    el('line', { x1: 10, y1: ground, x2: 390, y2: ground, 'stroke-width': 1.6, pathLength: 1 }, g);
+    for (let b = 0; b < bays; b++) {
+      const lost = step && b >= bays - step ? Math.ceil(floors / 2) : 0;
+      const h = (floors - lost) * fh, x = x0 + b * bw;
+      el('rect', { x, y: ground - h, width: bw, height: h, pathLength: 1, fill: '#F2F1EC' }, g);
+      for (let f = 0; f < floors - lost; f++) {
+        if (open && f === 0) continue;
+        el('rect', { x: x + bw * .22, y: ground - (f + 1) * fh + fh * .25, width: bw * .56, height: fh * .5, 'stroke-width': .7, pathLength: 1 }, g);
+      }
+      if (roof === 'saw') el('polyline', { points: `${x},${ground - h} ${x + bw},${ground - h - fh * .6} ${x + bw},${ground - h}`, pathLength: 1 }, g);
+    }
+    if (roof === 'gable') { const h = floors * fh; el('polyline', { points: `${x0},${ground - h} ${x0 + W / 2},${ground - h - 52} ${x0 + W},${ground - h}`, pathLength: 1 }, g); }
+    if (open) { el('line', { x1: x0, y1: ground - fh, x2: x0 + W, y2: ground - fh, 'stroke-width': 2, pathLength: 1 }, g); for (let b = 0; b <= bays; b++) el('line', { x1: x0 + b * bw, y1: ground, x2: x0 + b * bw, y2: ground - fh, pathLength: 1 }, g); }
+    // dimension line with 7-module ticks
+    const dy = ground + 22; el('line', { x1: x0, y1: dy, x2: x0 + W, y2: dy, 'stroke-width': .6 }, pv);
+    for (let b = 0; b <= bays; b++) el('line', { x1: x0 + b * bw - 3, y1: dy + 3, x2: x0 + b * bw + 3, y2: dy - 3, 'stroke-width': .8, stroke: '#111' }, pv);
+    const t = el('text', { x: x0 + W / 2, y: dy + 16, 'text-anchor': 'middle', 'font-family': 'IBM Plex Mono, monospace', 'font-size': 10, fill: '#5C5C58' }, pv);
+    t.textContent = `${bays} × 7.20 m`;
+    el('circle', { cx: x0, cy: ground, r: 3.5, fill: '#E2231A' }, pv);
+    requestAnimationFrame(() => requestAnimationFrame(() => g.querySelectorAll('[pathLength]').forEach(n => n.style.strokeDashoffset = 0)));
+  }
+  // dasharray for preview drawings (inline so the generic .ready rule isn't needed)
+  const pvStyle = document.createElement('style');
+  pvStyle.textContent = `#pv [pathLength]{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 900ms cubic-bezier(.2,.7,.1,1)}@media (prefers-reduced-motion:reduce){#pv [pathLength]{stroke-dashoffset:0!important}}`;
+  document.head.appendChild(pvStyle);
+
+  const tbody = document.getElementById('rows');
+  const pvName = document.getElementById('pvName'), pvMeta = document.getElementById('pvMeta');
+  let activeRow = null;
+  const nf = new Intl.NumberFormat('de-CH');
+  projects.forEach((p, i) => {
+    const tr = document.createElement('tr'); tr.className = 'row'; tr.dataset.type = p[3];
+    tr.innerHTML = `<td class="no">${String(i + 1).padStart(2, '0')}</td>
+      <td><button class="rowbtn" type="button">${p[0]}</button></td>
+      <td class="c hide-s">${p[1]}</td><td class="c">${p[2]}</td><td class="c hide-s">${p[3]}</td><td class="c r hide-s">${nf.format(p[4])}</td>`;
+    const activate = () => {
+      if (activeRow === tr) return;
+      activeRow && activeRow.classList.remove('active'); tr.classList.add('active'); activeRow = tr;
+      pvName.textContent = p[0]; pvMeta.textContent = `South elevation · 1:200 · ${p[3]} · ${p[1]}`; drawElevation(p[5]);
+    };
+    tr.addEventListener('mouseenter', activate);
+    tr.querySelector('button').addEventListener('focus', activate);
+    tr.querySelector('button').addEventListener('click', activate);
+    tbody.appendChild(tr);
+    if (i === 0) activate();
+  });
+
+  // filters with strikethrough active state + padded count
+  const count = document.getElementById('count');
+  document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.filters button').forEach(x => x.setAttribute('aria-pressed', x === b));
+    let n = 0; tbody.querySelectorAll('tr').forEach(tr => { const show = b.dataset.f === 'all' || tr.dataset.type === b.dataset.f; tr.classList.toggle('hide', !show); if (show) n++; });
+    count.textContent = String(n).padStart(3, '0');
+    const first = tbody.querySelector('tr:not(.hide)'); first && first.dispatchEvent(new Event('mouseenter'));
+  }));
+
+  /* ---------- plan with three scales ---------- */
+  const art = document.getElementById('planArt');
+  // streets & plots
+  el('path', { d: 'M0 90 H1000 M0 130 H1000 M0 520 H1000 M0 560 H1000 M140 0 V600 M180 0 V600 M860 0 V600 M900 0 V600', stroke: '#111', 'stroke-width': 1.2 }, art);
+  el('rect', { x: 200, y: 150, width: 640, height: 350, stroke: '#CFCDC6', 'stroke-dasharray': '6 4' }, art);
+  // trees
+  [[230, 470], [260, 180], [800, 470], [820, 180], [520, 470], [380, 470], [660, 470]].forEach(([x, y]) => { el('circle', { cx: x, cy: y, r: 14, stroke: '#5C5C58', 'stroke-width': .7 }, art); el('circle', { cx: x, cy: y, r: 1.5, fill: '#5C5C58', stroke: 'none' }, art); });
+  // neighbouring blocks
+  [[20, 150, 100, 350], [920, 150, 70, 350], [200, 10, 640, 60], [200, 580, 640, 20]].forEach(([x, y, w, h]) => el('rect', { x, y, width: w, height: h, fill: 'url(#dots)', stroke: '#111', 'stroke-width': .7 }, art));
+  // the building: 7 bays of 60 (= 7.2 m), courtyards
+  const bx = 300, by = 220, bw7 = 60;
+  el('rect', { x: bx, y: by, width: bw7 * 7, height: 200, fill: '#fff', stroke: '#111', 'stroke-width': 2.2 }, art);
+  for (let i = 1; i < 7; i++) el('line', { x1: bx + i * bw7, y1: by, x2: bx + i * bw7, y2: by + 200, stroke: '#111', 'stroke-width': i === 3 || i === 4 ? 1.6 : .5 }, art);
+  el('rect', { x: bx + 3 * bw7, y: by, width: bw7, height: 200, fill: '#E9E7E0', stroke: 'none' }, art); // public passage
+  const tx = (t, x, y, s = 11, a = 'middle', col = '#5C5C58') => { const n = el('text', { x, y, 'font-family': 'IBM Plex Mono, monospace', 'font-size': s, fill: col, stroke: 'none', 'text-anchor': a }, art); n.textContent = t; };
+  tx('PASSAGE', bx + 3.5 * bw7, by + 104, 9);
+  'ABCDEFG'.split('').forEach((l, i) => { el('circle', { cx: bx + i * bw7 + 30, cy: by - 24, r: 9, stroke: '#E2231A', 'stroke-width': .8, fill: '#F7F6F2' }, art); tx(l, bx + i * bw7 + 30, by - 20.5, 9, 'middle', '#B3170F'); });
+  tx('LYSBÜCHELSTRASSE', 520, 115, 10); tx('VOLTASTRASSE', 520, 545, 10);
+  // wall detail (visible at 1:50) bottom-left corner of building
+  const dx = bx, dy = by + 200;
+  el('rect', { x: dx - 6, y: dy - 30, width: 6, height: 36, fill: 'url(#hatch)', 'stroke-width': .4 }, art);   // brick
+  el('rect', { x: dx, y: dy - 30, width: 4, height: 34, fill: '#fff', 'stroke-width': .3 }, art);             // insulation
+  el('rect', { x: dx + 4, y: dy - 30, width: 3, height: 33, fill: '#111', stroke: 'none' }, art);             // concrete
+  el('rect', { x: dx - 6, y: dy, width: 40, height: 6, fill: 'url(#hatch)', 'stroke-width': .4 }, art);
+  tx('brick 125', dx - 8, dy - 34, 2.6, 'end', '#111'); tx('mineral wool 200', dx + 2, dy - 34, 2.6, 'start', '#111'); tx('± 0.00', dx + 14, dy + 12, 2.6, 'start', '#B3170F');
+
+  const views = {
+    500: { vb: [0, 0, 1000, 600], cap: 'Site plan · North ↑', bar: '0 — 20 m', note: 'The block in its street: four courtyards, one public passage.' },
+    200: { vb: [270, 180, 480, 288], cap: 'Ground floor · 7 bays × 7.20 m', bar: '0 — 8 m', note: 'Seven equal bays. The fourth is left open as a public passage.' },
+    50:  { vb: [282, 380, 60, 36], cap: 'Wall detail at grid line A', bar: '0 — 1 m', note: 'Brick, mineral wool, concrete. 335 mm, nothing glued.' }
+  };
+  const svg = document.getElementById('plan');
+  let cur = views[500].vb.slice(), raf;
+  function zoomTo(k) {
+    const v = views[k], from = cur.slice(), to = v.vb, t0 = performance.now(), D = reduce ? 0 : 900;
+    document.getElementById('planCap').textContent = v.cap; document.getElementById('barLabel').textContent = v.bar; document.getElementById('scaleNote').textContent = v.note;
+    cancelAnimationFrame(raf);
+    const step = now => {
+      const t = D ? Math.min(1, (now - t0) / D) : 1, e = t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      cur = from.map((f, i) => f + (to[i] - f) * e); svg.setAttribute('viewBox', cur.join(' '));
+      if (t < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+  }
+  document.querySelectorAll('.scale-ctrl button').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.scale-ctrl button').forEach(x => x.setAttribute('aria-pressed', x === b)); zoomTo(b.dataset.s);
+  }));
+
+  /* ---------- reveal on scroll ---------- */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rv').forEach((n, i) => { n.style.transitionDelay = `${(i % 3) * 60}ms`; io.observe(n); });
+
+  /* ---------- start ---------- */
+  requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.add('ready')));
+})();
+</script>
+</body>
+</html>

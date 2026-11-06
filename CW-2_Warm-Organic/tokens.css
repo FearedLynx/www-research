@@ -1,0 +1,128 @@
+/* ==========================================================================
+   CW-2 Warm-Organic — design tokens
+   Base theme: "Flour & Field" (bakery / farm / food).
+   Variants:  [data-theme="tea-house"]  green-tea, ceramic, calm wellness
+              [data-theme="clay"]       terracotta NGO / sustainability / skincare
+   Fonts (Google Fonts):
+     Fraunces (variable: opsz 9–144, wght 300–800, SOFT 0–100, WONK 0–1)  display
+     DM Sans 400/500/700                                                    text/UI
+     Caveat 500/600                                                         handwritten marginalia (accents only)
+   ========================================================================== */
+
+:root {
+  /* ---------- colour: earth, grain, plant ---------- */
+  --c-paper:      #F3EBDD;  /* flour / unbleached paper                        */
+  --c-paper-2:    #EADFCB;  /* kraft-lite panels                                */
+  --c-paper-3:    #E2D3B9;  /* deeper oat for cards                             */
+  --c-ink:        #2A2119;  /* soot brown, never #000 (13.3:1 on paper)         */
+  --c-ink-soft:   #5A3A22;  /* rye brown, headings / secondary (8.6:1)          */
+  --c-muted:      #6B5A49;  /* captions (5.6:1)                                 */
+  --c-crust:      #B4602B;  /* signature accent: shapes, large display only (3.8:1) */
+  --c-crust-text: #9A4A1E;  /* crust for small text & links (5.3:1)             */
+  --c-sage:       #7C8B63;  /* plant accent: shapes, illustration               */
+  --c-sage-deep:  #4F5B3C;  /* sage for text (6.1:1)                            */
+  --c-butter:     #E9C46A;  /* highlight: stamps, marker swipes (decorative)    */
+  --c-clay:       #C98B6B;  /* blobs, illustration fills                        */
+  --c-field:      #2F3A2A;  /* dark sections / footer                           */
+  --c-on-field:   #F3EBDD;  /* text on field (10.1:1)                           */
+  --c-focus:      #9A4A1E;
+
+  /* ---------- typography ---------- */
+  --font-display: "Fraunces", "Recoleta", "Cooper", Georgia, serif;
+  --font-text:    "DM Sans", "Söhne", system-ui, sans-serif;
+  --font-hand:    "Caveat", "Segoe Print", cursive;   /* max ~5 short notes per page */
+  --display-axes: "SOFT" 100, "WONK" 1, "opsz" 144;   /* soft, slightly wonky, warm */
+  --display-axes-calm: "SOFT" 50, "WONK" 0, "opsz" 72;
+
+  --fs-caption: .8125rem;
+  --fs-small:   clamp(.875rem, .85rem + .1vw, .9375rem);
+  --fs-body:    clamp(1.0625rem, 1rem + .25vw, 1.1875rem); /* generous: reading is the point */
+  --fs-lead:    clamp(1.25rem, 1.1rem + .7vw, 1.75rem);
+  --fs-hand:    clamp(1.35rem, 1.2rem + .6vw, 1.9rem);
+  --fs-h3:      clamp(1.5rem, 1.25rem + 1.1vw, 2.25rem);
+  --fs-h2:      clamp(2.2rem, 1.5rem + 3vw, 4.25rem);
+  --fs-h1:      clamp(3rem, 1.5rem + 6.5vw, 8.5rem);
+  --fw-display: 380;      /* medium-light: friendly, not fragile */
+  --lh-display: .98;
+  --lh-body:    1.6;
+  --tr-display: -0.025em;
+  --tr-caps:    0.08em;   /* caps only lightly tracked: warm, not haughty */
+  --measure:    36em;
+
+  /* ---------- spacing ---------- */
+  --space-1: .5rem; --space-2: 1rem; --space-3: 1.5rem; --space-4: 2rem;
+  --space-5: 3rem;  --space-6: 4.5rem; --space-7: 6.5rem; --space-8: 9rem;
+  --space-section: clamp(4.5rem, 3rem + 7vw, 10rem);
+  --gutter: clamp(1rem, .6rem + 2vw, 2.5rem);
+  --max-w: 1320px;
+
+  /* ---------- shape: soft, irregular, hand-cut ---------- */
+  --radius-s: 10px;
+  --radius-m: 22px;
+  --radius-l: 40px;
+  --radius-pill: 999px;
+  --radius-pebble: 62% 38% 46% 54% / 55% 44% 56% 45%;  /* organic blob */
+  --radius-leaf:   0 70% 0 70%;
+  --radius-loaf:   48% 52% 40% 40% / 62% 62% 38% 38%;  /* domed top */
+  --border-ink: 1.5px solid var(--c-ink);              /* drawn-feeling outlines */
+  --rotate-wobble: -1.2deg;                            /* cards sit slightly off-true */
+
+  /* ---------- shadow: soft paper-on-table ---------- */
+  --shadow-paper: 0 1px 0 rgba(42,33,25,.06), 0 12px 24px -14px rgba(90,58,34,.35);
+  --shadow-lift:  0 2px 0 rgba(42,33,25,.08), 0 24px 40px -18px rgba(90,58,34,.45);
+  --shadow-stamp: 3px 3px 0 var(--c-ink);              /* print / sticker offset */
+
+  /* ---------- motion: organic, springy but gentle ---------- */
+  --ease-soft:   cubic-bezier(.33, 1, .68, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);     /* small overshoot (≤ 6%) for stamps & buttons */
+  --ease-breathe: cubic-bezier(.45, 0, .55, 1);       /* looping blob morph */
+  --dur-fast: 220ms;
+  --dur-base: 600ms;
+  --dur-slow: 1100ms;
+  --dur-draw: 1400ms;   /* hand-drawn stroke draw-on */
+  --dur-breathe: 9s;    /* blob morph loop */
+
+  /* ---------- texture ---------- */
+  --grain-opacity: .12;
+  --paper-fibre: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .23 0 0 0 0 .13 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---------- Variant A: Tea House (wellness, tea, ceramics, spa) ---------- */
+[data-theme="tea-house"] {
+  --c-paper:      #E8E4D3;  /* rice paper */
+  --c-paper-2:    #DCD8C2;
+  --c-paper-3:    #CFCBB2;
+  --c-ink:        #2F3A2A;  /* 9.4:1 */
+  --c-ink-soft:   #3F4D36;
+  --c-muted:      #5B6350;
+  --c-crust:      #8C9A5B;  /* matcha */
+  --c-crust-text: #55633A;
+  --c-sage:       #A3B18A;
+  --c-butter:     #D9C9A3;
+  --c-clay:       #B9A58A;
+  --c-field:      #1F2A22;
+  --display-axes: "SOFT" 50, "WONK" 0, "opsz" 72;
+  --dur-base: 800ms;        /* slower, calmer */
+  --ease-spring: var(--ease-soft); /* no overshoot in wellness */
+}
+
+/* ---------- Variant B: Clay (NGO, sustainability, skincare, craft) ---------- */
+[data-theme="clay"] {
+  --c-paper:      #F1DCC8;
+  --c-paper-2:    #E9CDB3;
+  --c-paper-3:    #E0BC9C;
+  --c-ink:        #3B2A20;  /* 10.3:1 */
+  --c-ink-soft:   #5C3A28;
+  --c-muted:      #6E4B37;
+  --c-crust:      #C2562F;  /* terracotta */
+  --c-crust-text: #8A3B1E;  /* 5.8:1 */
+  --c-sage:       #6F7F55;
+  --c-butter:     #F0B65A;
+  --c-clay:       #D98E6A;
+  --c-field:      #3B2A20;
+  --c-on-field:   #F1DCC8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 1ms; --dur-base: 1ms; --dur-slow: 1ms; --dur-draw: 1ms; --dur-breathe: 0s; --ease-spring: linear; }
+}

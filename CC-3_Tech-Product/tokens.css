@@ -1,0 +1,126 @@
+/* =====================================================================
+   CC-3 · Tech Product: design tokens
+   Base theme "Sodium": warm black + sodium-amber used as LIGHT, not paint.
+   Variants: [data-theme="phosphor"] (cool black + terminal green)
+             [data-theme="daylight"] (light mode for docs / long reading)
+   Fonts (Google): Geist (UI), Geist Mono (labels, code, numbers),
+                   Instrument Serif (one contrasting display moment)
+   ===================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* ---- Grey ramp (12 steps, warm-neutral) -------------------------- */
+  --g-0:  #0B0A08;   /* page background                          */
+  --g-1:  #11100D;   /* surface 1                                */
+  --g-2:  #181713;   /* surface 2 / cards                        */
+  --g-3:  #201E1A;   /* hover surface                            */
+  --g-4:  #2A2823;   /* borders strong                           */
+  --g-6:  #4A4740;
+  --g-8:  #8E8A80;   /* tertiary text  (≈ 5.9:1 on --g-0)        */
+  --g-9:  #B5B1A7;   /* secondary text (≈ 9.5:1)                 */
+  --g-11: #F3F1EC;   /* primary text   (≈ 17:1)                  */
+
+  --c-bg:        var(--g-0);
+  --c-surface:   var(--g-1);
+  --c-card:      var(--g-2);
+  --c-text:      var(--g-11);
+  --c-text-2:    var(--g-9);
+  --c-text-3:    var(--g-8);
+  --c-border:    rgba(243, 241, 236, .08);
+  --c-border-hi: rgba(243, 241, 236, .16);
+  --c-topline:   inset 0 1px 0 rgba(255, 255, 255, .06);  /* simulated top light */
+
+  /* ---- Brand light ------------------------------------------------- */
+  --c-light:      #FFB224;               /* sodium amber              */
+  --c-light-2:    #FF7A1A;               /* hotter core               */
+  --c-light-ink:  #1A1204;               /* text on amber buttons     */
+  --glow-1: radial-gradient(60% 50% at 50% 0%, rgba(255,178,36,.22), transparent 70%);
+  --glow-2: radial-gradient(40% 40% at 50% 50%, rgba(255,122,26,.18), transparent 70%);
+  --c-ok:   #7BD88F;
+  --c-warn: #FFB224;
+  --c-err:  #FF6B5B;
+  --c-info: #8CC8FF;
+
+  /* gradient text: white → 55% at the bottom (check darkest stop for contrast) */
+  --text-grad: linear-gradient(180deg, #FFFFFF 20%, rgba(243,241,236,.62) 100%);
+
+  /* ---- Typography -------------------------------------------------- */
+  --font-sans:    "Geist", "Inter Tight", system-ui, sans-serif;
+  --font-mono:    "Geist Mono", "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "Instrument Serif", "Newsreader", Georgia, serif;   /* one moment only */
+
+  --fs-xs:   0.75rem;    /* 12 mono labels */
+  --fs-sm:   0.875rem;   /* 14 */
+  --fs-base: 1rem;       /* 16 body */
+  --fs-lg:   1.125rem;
+  --fs-xl:   clamp(1.25rem, 1.1rem + .6vw, 1.6rem);
+  --fs-2xl:  clamp(1.9rem, 1.4rem + 2vw, 3rem);
+  --fs-3xl:  clamp(2.6rem, 1.6rem + 4.6vw, 5.4rem);   /* hero */
+  --lh-tight: 1.02;
+  --lh-body:  1.6;
+  --tracking-display: -0.04em;
+  --tracking-mono:     0.02em;
+
+  /* ---- Spacing / layout -------------------------------------------- */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 160px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --maxw: 1180px;
+  --section-y: clamp(80px, 11vw, 160px);
+  --grid-line: 1px solid var(--c-border);
+
+  /* ---- Radius -------------------------------------------------------- */
+  --r-1: 6px; --r-2: 10px; --r-3: 14px; --r-4: 20px; --r-pill: 999px;
+
+  /* ---- Shadow / elevation (light from above) ----------------------- */
+  --sh-1: var(--c-topline), 0 1px 2px rgba(0,0,0,.4);
+  --sh-2: var(--c-topline), 0 16px 40px -16px rgba(0,0,0,.7);
+  --sh-hero: 0 0 0 1px var(--c-border-hi), 0 -20px 80px -20px rgba(255,178,36,.35), 0 60px 120px -40px rgba(0,0,0,.9);
+
+  /* ---- Motion ------------------------------------------------------- */
+  --ease-out:    cubic-bezier(.16, 1, .3, 1);     /* expo-out */
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  --t-ui:   160ms;
+  --t-base: 280ms;
+  --t-reveal: 700ms;
+
+  /* ---- Texture ------------------------------------------------------ */
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+  --noise-opacity: .05;
+}
+
+/* ---- Variant 1: Phosphor (cool black + terminal green) --------------- */
+[data-theme="phosphor"] {
+  --g-0: #07090A; --g-1: #0C0F10; --g-2: #121617; --g-3: #191E20; --g-4: #232A2C;
+  --g-8: #85908F; --g-9: #AEB8B6; --g-11: #EEF3F2;
+  --c-light:   #4BF29A;
+  --c-light-2: #1FD3C6;
+  --c-light-ink: #03140B;
+  --glow-1: radial-gradient(60% 50% at 50% 0%, rgba(75,242,154,.18), transparent 70%);
+  --glow-2: radial-gradient(40% 40% at 50% 50%, rgba(31,211,198,.16), transparent 70%);
+  --sh-hero: 0 0 0 1px var(--c-border-hi), 0 -20px 80px -20px rgba(75,242,154,.3), 0 60px 120px -40px rgba(0,0,0,.9);
+  --font-display: "Geist Mono", monospace;  /* mono headline twist */
+}
+
+/* ---- Variant 2: Daylight (light mode for docs, long reading) ---------- */
+[data-theme="daylight"] {
+  color-scheme: light;
+  --g-0: #FBFAF7; --g-1: #F4F2ED; --g-2: #FFFFFF; --g-3: #EFECE6; --g-4: #DEDAD2;
+  --g-8: #6B675E;  /* ≈ 5.5:1 on --g-0 */
+  --g-9: #46433C; --g-11: #15140F;
+  --c-border:    rgba(21, 20, 15, .10);
+  --c-border-hi: rgba(21, 20, 15, .18);
+  --c-topline:   inset 0 1px 0 rgba(255,255,255,.8);
+  --c-light:   #9A4F00;   /* amber darkened for AA on light (≈ 5.8:1) */
+  --c-light-2: #E0561B;
+  --c-light-ink: #FFFFFF;
+  --glow-1: radial-gradient(60% 50% at 50% 0%, rgba(255,178,36,.18), transparent 70%);
+  --text-grad: linear-gradient(180deg, #15140F 30%, #4A463E 100%);
+  --sh-2: 0 1px 0 rgba(21,20,15,.04), 0 16px 40px -20px rgba(21,20,15,.25);
+  --sh-hero: 0 0 0 1px var(--c-border-hi), 0 40px 80px -40px rgba(21,20,15,.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --t-ui: 0ms; --t-base: 0ms; --t-reveal: 0ms; }
+}

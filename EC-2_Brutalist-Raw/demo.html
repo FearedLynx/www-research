@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SUBSTRAT records/room — Leipzig</title>
+<meta name="description" content="SUBSTRAT is a fictional experimental record label and basement art space in Leipzig-Plagwitz. Demo page for the EC-2 Brutalist / Raw style. System fonts only.">
+<style>
+/* tokens (mirrors tokens.css) — no web fonts on purpose */
+:root{
+  --c-bg:#FFFFFF; --c-fg:#000; --c-link:#0000EE; --c-visited:#551A8B; --c-mark:#FFFF00;
+  --c-alarm:#E00000; --c-acid:#00FF41; --c-grid:#E6E6E6;
+  --font-body:"Times New Roman",Times,"Liberation Serif",serif;
+  --font-sans:Arial,Helvetica,"Liberation Sans",sans-serif;
+  --font-mono:ui-monospace,"Courier New",Courier,monospace;
+  --fs-body:clamp(17px,16px + .3vw,20px); --bw:2px;
+}
+[data-theme="xerox"]{--c-bg:#FF5FD2;--c-fg:#000;--c-link:#000;--c-visited:#000;--c-mark:#fff;--c-alarm:#000;--c-grid:rgba(0,0,0,.18);--font-body:ui-monospace,"Courier New",monospace}
+[data-theme="terminal"]{--c-bg:#000;--c-fg:#00FF41;--c-link:#FFFF00;--c-visited:#fff;--c-mark:#00FF41;--c-alarm:#FF5050;--c-grid:#0b2a12;--font-body:ui-monospace,"Courier New",monospace;--font-sans:ui-monospace,"Courier New",monospace}
+
+html{overflow-x:clip}
+body{margin:0;background:var(--c-bg);color:var(--c-fg);font-family:var(--font-body);font-size:var(--fs-body);line-height:1.35;overflow-x:clip;cursor:crosshair}
+a{color:var(--c-link);text-underline-offset:2px}
+a:visited{color:var(--c-visited)}
+a:hover{background:var(--c-fg);color:var(--c-bg);text-decoration:none}
+::selection{background:var(--c-fg);color:var(--c-bg)}
+:focus-visible{outline:3px solid var(--c-alarm);outline-offset:2px}
+button{font:inherit;color:inherit;background:var(--c-bg);border:var(--bw) solid var(--c-fg);padding:2px 8px;cursor:pointer;border-radius:0}
+button:hover{background:var(--c-fg);color:var(--c-bg)}
+button:active{transform:translate(2px,2px)}
+.mono{font-family:var(--font-mono);font-size:13px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+hr{border:0;border-top:6px solid var(--c-fg);margin:0}
+mark{background:var(--c-mark);color:#000}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;z-index:99;background:var(--c-mark);color:#000}
+
+/* ---------- ticker ---------- */
+.ticker{background:var(--c-mark);color:#000;border-bottom:var(--bw) solid #000;overflow:hidden;white-space:nowrap;font-family:var(--font-mono);font-size:14px;font-weight:700;text-transform:uppercase}
+.ticker div{display:inline-block;padding:6px 0;animation:tick 38s linear infinite}
+.ticker:hover div,.ticker:focus-within div{animation-play-state:paused}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ---------- header ---------- */
+.head{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;padding:10px 12px;border-bottom:var(--bw) solid var(--c-fg)}
+.logo{font-family:var(--font-sans);font-weight:900;font-size:18px;letter-spacing:-.04em;color:var(--c-fg);text-decoration:none}
+.head nav a{margin-right:10px}
+.head nav a::before{content:"[";color:var(--c-fg)}.head nav a::after{content:"]";color:var(--c-fg)}
+.tools{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.tools .mono{margin-right:8px}
+button[aria-pressed="true"]{background:var(--c-fg);color:var(--c-bg)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:min(92vh,980px);background-image:linear-gradient(var(--c-grid) 1px,transparent 1px),linear-gradient(90deg,var(--c-grid) 1px,transparent 1px);background-size:32px 32px;border-bottom:6px solid var(--c-fg)}
+.huge{margin:0;font-family:var(--font-sans);font-weight:900;font-size:clamp(84px,21.5vw,460px);line-height:.74;letter-spacing:-.075em;white-space:nowrap;padding:.08em 0 0 .02em}
+.huge span{display:inline-block;transform:scaleY(1.75);transform-origin:top left;margin-bottom:.62em}
+.huge .r{color:var(--c-alarm)}
+.sub{display:flex;flex-wrap:wrap;gap:4px 28px;padding:0 12px 14px;font-family:var(--font-mono);font-size:14px;text-transform:uppercase}
+.sub b{background:var(--c-fg);color:var(--c-bg);padding:0 4px}
+
+/* ---------- windows (signature 1) ---------- */
+.win{position:absolute;width:min(360px,86vw);background:var(--c-bg);border:var(--bw) solid var(--c-fg);box-shadow:8px 8px 0 var(--c-fg);font-size:16px}
+.win.acid{background:var(--c-acid);color:#000}
+.win.acid a{color:#000}
+.bar{display:flex;align-items:center;gap:8px;background:var(--c-fg);color:var(--c-bg);font-family:var(--font-mono);font-size:13px;padding:3px 3px 3px 8px;cursor:grab;user-select:none;touch-action:none}
+.bar:active{cursor:grabbing}
+.bar span{flex:1}
+.bar button{background:var(--c-bg);color:var(--c-fg);border:0;padding:0 6px;font-family:var(--font-mono);line-height:1.3}
+.win .body{padding:10px 12px 12px}
+.win h2{margin:0 0 6px;font-family:var(--font-sans);font-size:28px;line-height:.95;letter-spacing:-.04em;text-transform:uppercase}
+.win p{margin:0 0 8px}
+.win dl{display:grid;grid-template-columns:auto 1fr;gap:0 10px;margin:0 0 10px;font-family:var(--font-mono);font-size:13px}
+.win dt{font-weight:700}.win dd{margin:0}
+.win.closed{display:none}
+.reopen{position:absolute;right:12px;bottom:12px}
+
+/* ---------- section heads ---------- */
+section{border-bottom:6px solid var(--c-fg)}
+.sh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px;border-bottom:var(--bw) solid var(--c-fg)}
+.sh h2{margin:0;font-family:var(--font-sans);font-weight:900;text-transform:uppercase;font-size:clamp(40px,9vw,140px);line-height:.8;letter-spacing:-.06em}
+.sh h2 i{font-family:var(--font-body);font-weight:400;text-transform:none;letter-spacing:-.03em}
+
+/* ---------- catalogue (signature 2: sound) ---------- */
+table{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:14px}
+th,td{border:1px solid var(--c-fg);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--c-fg);color:var(--c-bg);font-weight:700;text-transform:uppercase;font-size:12px}
+td.t{font-family:var(--font-body);font-size:clamp(18px,1.6vw,24px);font-style:italic}
+td.a{font-family:var(--font-sans);font-weight:900;text-transform:uppercase;letter-spacing:-.02em}
+tbody tr:hover{background:var(--c-mark);color:#000}
+tbody tr.playing{background:var(--c-fg);color:var(--c-bg)}
+tbody tr.playing button{background:var(--c-alarm);color:#fff;border-color:var(--c-bg)}
+.soldout{text-decoration:line-through}
+.now{position:sticky;bottom:0;z-index:20;display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:var(--c-fg);color:var(--c-bg);font-family:var(--font-mono);font-size:14px;padding:6px 12px}
+.now[hidden]{display:none}
+.now .meter{letter-spacing:-.05em;white-space:pre}
+.now button{background:var(--c-bg);color:var(--c-fg);border-color:var(--c-bg)}
+
+/* ---------- room rows (Stedelijk-style) ---------- */
+.rows a{display:flex;flex-wrap:nowrap;align-items:center;gap:0 .25em;padding:8px 12px;border-bottom:var(--bw) solid var(--c-fg);text-decoration:none;color:var(--c-fg);
+  font-family:var(--font-sans);font-weight:900;text-transform:uppercase;font-size:clamp(36px,8.6vw,150px);line-height:.88;letter-spacing:-.06em;white-space:nowrap;overflow:hidden}
+.rows a:hover{background:var(--c-fg);color:var(--c-bg)}
+.rows a:hover svg{filter:invert(1)}
+.rows .lab{font-family:var(--font-mono);font-size:13px;letter-spacing:0;font-weight:400;align-self:flex-start;color:var(--c-alarm);margin-right:6px}
+.rows .ser{font-family:var(--font-body);font-weight:400;font-style:italic;text-transform:none;letter-spacing:-.04em}
+.rows .out{color:transparent;-webkit-text-stroke:2px var(--c-fg)}
+.rows a:hover .out{-webkit-text-stroke-color:var(--c-bg)}
+.rows svg{height:.8em;width:auto;border:var(--bw) solid currentColor;flex:none}
+.room-txt{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:0}
+.room-txt p{margin:0;padding:12px;border-right:var(--bw) solid var(--c-fg);max-width:60ch}
+
+/* ---------- guestbook ---------- */
+.gb{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}
+.gb form{padding:12px;border-right:var(--bw) solid var(--c-fg);display:grid;gap:8px;align-content:start}
+.gb label{font-family:var(--font-mono);font-size:13px;text-transform:uppercase}
+.gb input,.gb textarea{font:inherit;color:var(--c-fg);background:var(--c-bg);border:var(--bw) solid var(--c-fg);padding:6px;border-radius:0;width:100%;box-sizing:border-box}
+.gb textarea{min-height:110px;font-family:var(--font-mono);font-size:15px}
+.gb ol{list-style:none;margin:0;padding:0;max-height:420px;overflow:auto}
+.gb li{padding:10px 12px;border-bottom:1px dashed var(--c-fg)}
+.gb li b{font-family:var(--font-sans);text-transform:uppercase}
+.gb li time{font-family:var(--font-mono);font-size:12px;margin-left:8px}
+
+/* ---------- footer ---------- */
+footer{padding:12px 12px 24px}
+.mail{display:block;font-style:italic;font-size:clamp(44px,12.5vw,230px);line-height:.85;letter-spacing:-.05em;overflow-wrap:anywhere;margin:10px 0 18px}
+.fmeta{display:flex;flex-wrap:wrap;gap:6px 24px;font-family:var(--font-mono);font-size:13px}
+.blink{animation:blink 1s steps(1,end) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* ---------- x-ray mode (signature 3) ---------- */
+.xray *{outline:1px dashed var(--c-alarm)!important;outline-offset:-1px}
+.xray [data-tag]{position:relative}
+.xray [data-tag]::after{content:"<" attr(data-tag) ">";position:absolute;left:0;top:0;z-index:50;font:700 10px/1.2 ui-monospace,"Courier New",monospace;background:var(--c-alarm);color:#fff;padding:0 3px;letter-spacing:0;text-transform:none;font-style:normal;pointer-events:none;-webkit-text-stroke:0}
+
+/* ---------- responsive ---------- */
+@media (max-width:760px){
+  .hero{min-height:0;padding-bottom:16px}
+  .win{position:relative!important;left:auto!important;top:auto!important;width:auto;margin:14px 12px 0;box-shadow:5px 5px 0 var(--c-fg)}
+  .bar{cursor:default}
+  .reopen{position:static;margin:12px}
+  table,thead,tbody,tr,td{display:block}
+  thead{position:absolute;left:-9999px}
+  tbody tr{border-bottom:var(--bw) solid var(--c-fg);padding:6px 0}
+  td{border:0;padding:3px 12px}
+  td[data-l]::before{content:attr(data-l) ": ";font-family:var(--font-mono);font-size:11px;text-transform:uppercase;font-style:normal;font-weight:400}
+  .gb{grid-template-columns:1fr}.gb form{border-right:0;border-bottom:var(--bw) solid var(--c-fg)}
+  .tools{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .ticker div{animation:none;white-space:normal}
+  .ticker{white-space:normal}
+  .blink{animation:none}
+  button:active{transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">skip to content</a>
+
+<div class="ticker" role="region" aria-label="News ticker (hover to pause)">
+  <div id="tick">NEW: SUB-031 KLÄRWERK — "PUMPENHAUS" 12" OUT 14.11. ++ ROOM: "NOISE IS A MATERIAL" OPENS FRI 21.11. 21:00 ++ DOOR: 5 EUR / NOBODY TURNED AWAY ++ SUB-029 SOLD OUT, NO REPRESS ++ RADIO EVERY TUESDAY 22:00 ++ </div>
+</div>
+
+<header class="head">
+  <a class="logo" href="#top">SUBSTRAT</a>
+  <nav aria-label="Main">
+    <a href="#releases">releases</a><a href="#room">room</a><a href="#guestbook">guestbook</a><a href="#contact">contact</a>
+  </nav>
+  <div class="tools">
+    <span class="mono" id="visits"></span>
+    <button id="xray" aria-pressed="false" title="Outline every element and show its tag">view source</button>
+    <span class="mono" aria-hidden="true">|</span>
+    <button data-theme-btn="" aria-pressed="true">default</button>
+    <button data-theme-btn="xerox" aria-pressed="false">xerox</button>
+    <button data-theme-btn="terminal" aria-pressed="false">terminal</button>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ================= HERO ================= -->
+  <div class="hero" id="top" data-tag="div.hero">
+    <h1 class="huge" data-tag="h1"><span>SUBSTRA<span class="r">T</span></span></h1>
+    <p class="sub"><span><b>records</b> / <b>room</b></span><span>since 2009</span><span>Leipzig-Plagwitz, basement, 3rd courtyard</span><span>no algorithm. no cookies. no web fonts.</span></p>
+
+    <div class="win" id="w1" role="group" aria-labelledby="w1t" style="left:54%;top:30%" data-tag="div.win">
+      <div class="bar" tabindex="0" aria-label="flyer_031.txt window. Use arrow keys to move."><span id="w1t">flyer_031.txt</span><button aria-label="Close flyer_031.txt">x</button></div>
+      <div class="body">
+        <h2>Klärwerk — Pumpenhaus</h2>
+        <dl><dt>CAT</dt><dd>SUB-031</dd><dt>FMT</dt><dd>12" / 180g / 300 copies</dd><dt>BPM</dt><dd>124</dd><dt>OUT</dt><dd>14.11.2026</dd></dl>
+        <p>Recorded inside a decommissioned sewage pumping station. Four tracks, one microphone, no edits.</p>
+        <button data-play="0">▶ play excerpt</button>
+      </div>
+    </div>
+
+    <div class="win" id="w2" role="group" aria-labelledby="w2t" style="left:5%;top:63%" data-tag="div.win">
+      <div class="bar" tabindex="0" aria-label="room_next.txt window. Use arrow keys to move."><span id="w2t">room_next.txt</span><button aria-label="Close room_next.txt">x</button></div>
+      <div class="body">
+        <h2>Noise is a material</h2>
+        <p>Group show, 21.11.–14.12. Seven artists treat sound as concrete: poured, cast, broken.</p>
+        <p class="mono"><mark>OPENING FRI 21:00</mark> — free, bring earplugs</p>
+      </div>
+    </div>
+
+    <div class="win acid" id="w3" role="group" aria-labelledby="w3t" style="left:72%;top:66%;width:min(280px,86vw)" data-tag="div.win">
+      <div class="bar" tabindex="0" aria-label="readme.exe window. Use arrow keys to move."><span id="w3t">readme.exe</span><button aria-label="Close readme.exe">x</button></div>
+      <div class="body mono">
+        <p>This page weighs less than one MP3 second. 0 cookies. 0 trackers. 0 web fonts. Your browser chose the typeface.</p>
+        <p><a href="#releases">OK, show me records</a></p>
+      </div>
+    </div>
+    <button class="reopen" id="reopen" hidden>reopen windows (3)</button>
+  </div>
+
+  <!-- ================= RELEASES ================= -->
+  <section id="releases" aria-labelledby="relT" data-tag="section">
+    <div class="sh"><h2 id="relT">Releases <i>(31)</i></h2><span class="mono">press ▶ — sound is synthesised live, nothing downloads</span></div>
+    <table data-tag="table">
+      <caption class="sr-only">Catalogue of SUBSTRAT releases, newest first. Play buttons generate a short synthesised excerpt.</caption>
+      <thead><tr><th scope="col">Cat</th><th scope="col">Artist</th><th scope="col">Title</th><th scope="col">Format</th><th scope="col">BPM</th><th scope="col">Year</th><th scope="col"><span class="sr-only">Play</span>▶</th></tr></thead>
+      <tbody id="cat"></tbody>
+    </table>
+  </section>
+
+  <!-- ================= ROOM ================= -->
+  <section id="room" aria-labelledby="roomT" data-tag="section">
+    <div class="sh"><h2 id="roomT">Room <i>(basement)</i></h2><span class="mono">Fri–Sun 16–23 h</span></div>
+    <div class="rows" data-tag="div.rows">
+      <a href="#room"><span class="lab">now</span>Noise is a <svg viewBox="0 0 120 80" aria-hidden="true"><filter id="d1"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="3" seed="4"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="discrete" tableValues="0 1"/><feFuncG type="discrete" tableValues="0 1"/><feFuncB type="discrete" tableValues="0 1"/></feComponentTransfer></filter><rect width="120" height="80" filter="url(#d1)"/></svg> material</a>
+      <a href="#room"><span class="lab">21.11.</span><span class="ser">seven</span> artists <svg viewBox="0 0 80 80" aria-hidden="true"><filter id="d2"><feTurbulence type="turbulence" baseFrequency=".09 .012" numOctaves="2" seed="9"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="discrete" tableValues="0 1"/><feFuncG type="discrete" tableValues="0 1"/><feFuncB type="discrete" tableValues="0 1"/></feComponentTransfer></filter><rect width="80" height="80" filter="url(#d2)"/></svg> <span class="out">one room</span></a>
+      <a href="#room"><span class="lab">next</span><span class="out">Feedback</span> <span class="ser">school</span> <svg viewBox="0 0 140 80" aria-hidden="true"><filter id="d3"><feTurbulence type="fractalNoise" baseFrequency=".012 .2" numOctaves="1" seed="2"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="discrete" tableValues="0 1"/><feFuncG type="discrete" tableValues="0 1"/><feFuncB type="discrete" tableValues="0 1"/></feComponentTransfer></filter><rect width="140" height="80" filter="url(#d3)"/></svg> 2027</a>
+    </div>
+    <div class="room-txt">
+      <p>The room is a former coal cellar, 6 × 14 m, 2.4 m ceiling, one door. Artists get the key for four weeks and the label presses whatever they record in it.</p>
+      <p>No sponsors, no wall text longer than this paragraph. Entry is 5 EUR or nothing. Wheelchair access via the courtyard lift; ask at the door.</p>
+      <p class="mono">Karl-Heine-Hof 3 (fictional)<br>04229 Leipzig<br>51.3297° N, 12.3361° E</p>
+    </div>
+  </section>
+
+  <!-- ================= GUESTBOOK ================= -->
+  <section id="guestbook" aria-labelledby="gbT" data-tag="section">
+    <div class="sh"><h2 id="gbT">Guestbook</h2><span class="mono">stored only in your browser</span></div>
+    <div class="gb">
+      <form id="gbform" data-tag="form">
+        <label for="gbn">name</label><input id="gbn" maxlength="40" required autocomplete="nickname">
+        <label for="gbm">message</label><textarea id="gbm" maxlength="280" required></textarea>
+        <button type="submit">sign &gt;&gt;</button>
+      </form>
+      <ol id="gblist" aria-live="polite" data-tag="ol">
+        <li><b>m.</b><time>03.11.2026 01:12</time><br>stood in the room for an hour with the subwoofer. my sternum is still humming.</li>
+        <li><b>KLÄRWERK</b><time>01.11.2026 18:40</time><br>test pressings arrived. side B is louder than side A. this is correct.</li>
+        <li><b>jo from dresden</b><time>28.10.2026 22:05</time><br>is SUB-029 really never coming back? (yes. — ed.)</li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer id="contact" data-tag="footer">
+  <span class="mono">contact / demos / complaints:</span>
+  <a class="mail" href="mailto:post@substrat.example">post@substrat<wbr>.example</a>
+  <div class="fmeta">
+    <span>SUBSTRAT e.V. (fictional) — style demo EC-2</span>
+    <span>last modified: <span id="lm"></span></span>
+    <span>set in: your default fonts</span>
+    <span><span class="blink" aria-hidden="true">█</span> online</span>
+  </div>
+</footer>
+
+<div class="now" id="now" hidden role="status" aria-live="polite">
+  <span id="nowTxt"></span><span class="meter" id="meter" aria-hidden="true"></span><button id="stop">■ stop</button>
+</div>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+
+  /* ticker: duplicate content for seamless loop */
+  const t = $('#tick'); t.textContent = t.textContent.repeat(2);
+
+  /* honest counters */
+  let n = 1; try { n = +(localStorage.getItem('substrat-visits') || 0) + 1; localStorage.setItem('substrat-visits', n); } catch (e) {}
+  $('#visits').textContent = `your visit no. ${String(n).padStart(4, '0')}`;
+  $('#lm').textContent = document.lastModified;
+
+  /* theme switch (tokens.css variants) */
+  $$('[data-theme-btn]').forEach(b => b.addEventListener('click', () => {
+    const v = b.dataset.themeBtn; v ? document.documentElement.setAttribute('data-theme', v) : document.documentElement.removeAttribute('data-theme');
+    $$('[data-theme-btn]').forEach(x => x.setAttribute('aria-pressed', x === b));
+  }));
+
+  /* x-ray / view-source mode */
+  $('#xray').addEventListener('click', e => { const on = document.body.classList.toggle('xray'); e.currentTarget.setAttribute('aria-pressed', on); });
+
+  /* ---------- draggable windows ---------- */
+  const hero = $('.hero'); let z = 10;
+  const wins = $$('.win');
+  const front = w => w.style.zIndex = ++z;
+  wins.forEach(w => {
+    const bar = w.querySelector('.bar');
+    w.addEventListener('pointerdown', () => front(w));
+    bar.querySelector('button').addEventListener('click', () => { w.classList.add('closed'); updateReopen(); });
+    bar.addEventListener('pointerdown', e => {
+      if (e.target.closest('button') || matchMedia('(max-width:760px)').matches) return;
+      bar.setPointerCapture(e.pointerId);
+      const hr = hero.getBoundingClientRect(), wr = w.getBoundingClientRect(), ox = e.clientX - wr.left, oy = e.clientY - wr.top;
+      const move = ev => {
+        const x = Math.max(-wr.width * .6, Math.min(hr.width - 40, ev.clientX - hr.left - ox));
+        const y = Math.max(0, Math.min(hr.height - 30, ev.clientY - hr.top - oy));
+        w.style.left = x + 'px'; w.style.top = y + 'px';
+      };
+      const up = () => { bar.removeEventListener('pointermove', move); bar.removeEventListener('pointerup', up); };
+      bar.addEventListener('pointermove', move); bar.addEventListener('pointerup', up);
+    });
+    bar.addEventListener('keydown', e => {
+      const d = e.shiftKey ? 40 : 10, k = { ArrowLeft: [-d, 0], ArrowRight: [d, 0], ArrowUp: [0, -d], ArrowDown: [0, d] }[e.key];
+      if (!k) return; e.preventDefault(); front(w);
+      w.style.left = (w.offsetLeft + k[0]) + 'px'; w.style.top = Math.max(0, w.offsetTop + k[1]) + 'px';
+    });
+  });
+  const reopen = $('#reopen');
+  function updateReopen() { const c = wins.filter(w => w.classList.contains('closed')).length; reopen.hidden = !c; reopen.textContent = `reopen windows (${c})`; }
+  reopen.addEventListener('click', () => { wins.forEach(w => w.classList.remove('closed')); updateReopen(); wins[0].querySelector('.bar').focus(); });
+
+  /* ---------- catalogue + live synthesis ---------- */
+  const rel = [
+    ['SUB-031', 'Klärwerk', 'Pumpenhaus', '12"', 124, 2026, { root: 55, wave: 'sawtooth', pat: [1,0,0,1,0,0,1,0,1,0,0,1,0,0,1,0], noise: [0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1] }],
+    ['SUB-030', 'Ilse Brandt', 'Fünf Räume für ein Feedback', 'LP', 0, 2026, { root: 110, wave: 'sine', pat: [1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0], noise: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], drone: true }],
+    ['SUB-029', 'Hof 3 Ensemble', 'Kohlenkeller', 'Tape', 92, 2025, { root: 73, wave: 'square', pat: [1,0,1,0,0,1,0,0,1,0,1,0,0,1,0,1], noise: [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1] }, true],
+    ['SUB-028', 'Mira Ostrowski', 'Weißes Rauschen, gelb', '7"', 140, 2025, { root: 98, wave: 'triangle', pat: [1,1,0,1,1,0,1,0,1,1,0,1,1,0,1,0], noise: [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0] }],
+    ['SUB-027', 'DJ Beton', 'Plattenbau Tools Vol. 2', '12"', 132, 2024, { root: 49, wave: 'sawtooth', pat: [1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0], noise: [0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0] }],
+    ['SUB-026', 'Kollektiv Nullpunkt', 'Messprotokoll', 'CD-R', 60, 2024, { root: 220, wave: 'square', pat: [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], noise: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0] }],
+    ['SUB-025', 'Saal 4', 'Lärmschutzwand', 'LP', 118, 2023, { root: 65, wave: 'sawtooth', pat: [1,0,1,1,0,1,0,1,1,0,1,1,0,1,0,1], noise: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0] }]
+  ];
+  const tb = $('#cat');
+  rel.forEach((r, i) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td data-l="cat">${r[0]}</td><td class="a" data-l="artist">${r[1]}</td><td class="t" data-l="title">${r[2]}</td>
+      <td data-l="format"${r[7] ? ' class="soldout"' : ''}>${r[3]}${r[7] ? ' (sold out)' : ''}</td><td data-l="bpm">${r[4] || '—'}</td><td data-l="year">${r[5]}</td>
+      <td><button data-play="${i}" aria-label="Play excerpt of ${r[2]} by ${r[1]}">▶</button></td>`;
+    tb.appendChild(tr);
+  });
+
+  let ac, master, analyser, timer = null, playing = -1, meterRaf;
+  const now = $('#now'), nowTxt = $('#nowTxt'), meter = $('#meter');
+  function noiseBuf() { const b = ac.createBuffer(1, ac.sampleRate * .2, ac.sampleRate), d = b.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / d.length); return b; }
+  let nb;
+  function stop() {
+    clearInterval(timer); timer = null; cancelAnimationFrame(meterRaf);
+    if (master) { master.gain.setTargetAtTime(0, ac.currentTime, .05); }
+    $$('tr.playing').forEach(r => r.classList.remove('playing'));
+    $$('[data-play]').forEach(b => { b.textContent = b.closest('.win') ? '▶ play excerpt' : '▶'; });
+    playing = -1; now.hidden = true;
+  }
+  function play(i) {
+    if (playing === i) return stop();
+    stop();
+    ac = ac || new (window.AudioContext || window.webkitAudioContext)();
+    ac.resume();
+    if (!nb) nb = noiseBuf();
+    master = ac.createGain(); master.gain.value = .07;
+    analyser = ac.createAnalyser(); analyser.fftSize = 64;
+    master.connect(analyser); analyser.connect(ac.destination);
+    const p = rel[i][6], bpm = rel[i][4] || 70, stepDur = 60 / bpm / 4;
+    let step = 0, drone;
+    if (p.drone) { drone = ac.createOscillator(); drone.type = 'sine'; drone.frequency.value = p.root; const g = ac.createGain(); g.gain.value = .5; drone.connect(g); g.connect(master); drone.start(); master.drone = drone; }
+    timer = setInterval(() => {
+      const tm = ac.currentTime + .02;
+      if (p.pat[step % 16]) {
+        const o = ac.createOscillator(), g = ac.createGain();
+        o.type = p.wave; o.frequency.setValueAtTime(p.root * (step % 8 === 6 ? 1.5 : 1) * (p.drone ? 2 : 1), tm);
+        o.frequency.exponentialRampToValueAtTime(p.root * .5, tm + stepDur * 1.8);
+        g.gain.setValueAtTime(.9, tm); g.gain.exponentialRampToValueAtTime(.001, tm + stepDur * 1.9);
+        o.connect(g); g.connect(master); o.start(tm); o.stop(tm + stepDur * 2);
+      }
+      if (p.noise[step % 16]) {
+        const s = ac.createBufferSource(), f = ac.createBiquadFilter(), g = ac.createGain();
+        s.buffer = nb; f.type = 'highpass'; f.frequency.value = 4000; g.gain.value = .5;
+        s.connect(f); f.connect(g); g.connect(master); s.start(tm);
+      }
+      step++;
+      if (step >= 16 * 8) stop();       /* excerpt: 8 bars */
+    }, stepDur * 1000);
+    playing = i;
+    $$(`[data-play="${i}"]`).forEach(b => { b.textContent = b.closest('.win') ? '■ stop excerpt' : '■'; const tr = b.closest('tr'); tr && tr.classList.add('playing'); });
+    nowTxt.textContent = `▶ ${rel[i][0]} ${rel[i][1].toUpperCase()} — ${rel[i][2]}  ${rel[i][4] ? rel[i][4] + ' BPM' : 'free time'}`;
+    now.hidden = false;
+    const bars = '▁▂▃▄▅▆▇█', data = new Uint8Array(analyser.frequencyBinCount);
+    const draw = () => { analyser.getByteFrequencyData(data); meter.textContent = [...data].slice(0, 28).map(v => bars[Math.min(7, v >> 5)]).join(''); meterRaf = requestAnimationFrame(draw); };
+    if (reduce) meter.textContent = '[meter off: reduced motion]'; else draw();
+  }
+  const _stop = stop;
+  stop = function () { if (master && master.drone) { try { master.drone.stop(); } catch (e) {} } _stop(); };
+  document.addEventListener('click', e => { const b = e.target.closest('[data-play]'); if (b) play(+b.dataset.play); });
+  $('#stop').addEventListener('click', () => stop());
+  addEventListener('keydown', e => { if (e.key === 'Escape' && playing > -1) stop(); });
+
+  /* ---------- guestbook (local only) ---------- */
+  const list = $('#gblist'), KEY = 'substrat-gb';
+  const esc = s => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const add = (e, top = true) => { const li = document.createElement('li'); li.innerHTML = `<b>${esc(e.n)}</b><time>${esc(e.t)}</time><br>${esc(e.m)}`; top ? list.prepend(li) : list.append(li); };
+  let saved = []; try { saved = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) {}
+  saved.forEach(e => add(e));
+  $('#gbform').addEventListener('submit', ev => {
+    ev.preventDefault();
+    const e = { n: $('#gbn').value.trim(), m: $('#gbm').value.trim(), t: new Date().toLocaleString('de-DE', { dateStyle: 'short', timeStyle: 'short' }) };
+    if (!e.n || !e.m) return;
+    add(e); saved.push(e); try { localStorage.setItem(KEY, JSON.stringify(saved.slice(-30))); } catch (err) {}
+    ev.target.reset();
+  });
+})();
+</script>
+</body>
+</html>
